@@ -1,4 +1,20 @@
+to setup
+  clear-all
+  create-turtles 100 [ setxy random-xcor random-ycor ]
+  reset-ticks
+end
 
+to go
+  move-turtles
+  tick
+end
+
+to move-turtles
+  ask turtles [
+    right random 360
+    forward 1
+  ]
+end
 @#$#@#$#@
 GRAPHICS-WINDOW
 210
@@ -21,11 +37,45 @@ GRAPHICS-WINDOW
 16
 -16
 16
-0
-0
+1
+1
 1
 ticks
 30.0
+
+BUTTON
+23
+35
+89
+68
+NIL
+setup
+NIL
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+1
+
+BUTTON
+105
+34
+168
+67
+NIL
+go
+T
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+0
 
 @#$#@#$#@
 ## WHAT IS IT?
