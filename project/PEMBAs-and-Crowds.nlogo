@@ -1,6 +1,24 @@
+turtles-own [personality]
+
 to setup
   clear-all
-  create-turtles 100 [ setxy random-xcor random-ycor ]
+  create-turtles agent-count [
+    setxy random-xcor random-ycor
+    set personality random 4 ]
+  ask turtles [
+    if personality = 0 [
+      set color red
+    ]
+    if personality = 1 [
+      set color green
+    ]
+    if personality = 2 [
+      set color blue
+    ]
+    if personality = 3 [
+      set color yellow
+    ]
+  ]
   reset-ticks
 end
 
@@ -11,16 +29,18 @@ end
 
 to move-turtles
   ask turtles [
-    right random 360
+    right random 30
     forward 1
   ]
 end
+;; Copyright 2019 Duncan McGreggor.
+;; See Info tab for full copyright and license.
 @#$#@#$#@
 GRAPHICS-WINDOW
-210
-10
-647
-448
+376
+25
+813
+463
 -1
 -1
 13.0
@@ -44,10 +64,10 @@ ticks
 30.0
 
 BUTTON
-23
-35
-89
-68
+205
+38
+271
+71
 NIL
 setup
 NIL
@@ -61,10 +81,10 @@ NIL
 1
 
 BUTTON
-105
-34
-168
-67
+287
+38
+350
+71
 NIL
 go
 T
@@ -76,6 +96,21 @@ NIL
 NIL
 NIL
 0
+
+SLIDER
+18
+37
+190
+70
+agent-count
+agent-count
+4
+1000
+99.0
+1
+1
+NIL
+HORIZONTAL
 
 @#$#@#$#@
 ## WHAT IS IT?
@@ -110,10 +145,32 @@ NIL
 
 (models in the NetLogo Models Library and elsewhere which are of related interest)
 
-## CREDITS AND REFERENCES
+## HOW TO CITE
+
+If you mention this model in a publication, we ask that you include the citations below.
+
+McGreggor, D. (2019). NetLogo Simple XXX Model. https://github.com/oubiwann/intro-abm/tree/master/project.
+
+## REFERENCES
 
 1. [Github project](https://github.com/oubiwann/intro-abm).
 1. A Model for Personality and Emotion Simulation, Arjan Egges-Sumedha Kshirsagar-Nadia Magnenat-Thalmann - Lecture Notes in Computer Science Knowledge-Based Intelligent Information and Engineering Systems - 2003
+
+## COPYRIGHT AND LICENSE
+
+Copyright © 2019 Duncan McGreggor.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
 @#$#@#$#@
 default
 true
