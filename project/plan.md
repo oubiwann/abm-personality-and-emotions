@@ -17,11 +17,11 @@ Agents with simulated personality, emotions, and moods -- all very simplistic.
 (3)   What properties do these agents have (describe by agent type)?
 
 <strong>
-Personality agents: an agent displays one personality of of a possible set of personality types. Type interactions are such that there are two types that are similar and they attract; there are two types that are similar and they repulse; there are two types that are dissimilar and they attract; there are two types that are dissimilar and they repulse.
+Personality agents: an agent displays one personality of a possible set of personality types. Type interactions are such that there are two types that are similar and they attract; there are two types that are similar and they repulse; there are two types that are dissimilar and they attract; there are two types that are dissimilar and they repulse.
 
 Emotional agents: an agent displays one emotion of two possible emotions (positive emotion, negative emotion). These are considered highly volatile. Two agents with the same emotional state attract; otherwise, repulse. An agent's emotional state is updated based upon the average emotional state of its immediate neighbors. No history of neighbors is maintained.
 
-Mood agents: an agent displays one of two possible moods (good mood, bad mood). These are not as volatile as emotions, but rather persist over time. However, they are changeable. Mood impact from one agent to another will only be transmitted when arbitrary sensory input/output sides face each other. As such, each agent will have four sides, with the lowest indexed face representing the intput/output side. A mood impact event will follow an inverse square law as far as the degree to which it effects a given agent; after a certain number of ticks, the event will be "forgotten" and no longer contribute to the agent's mood.
+Mood agents: an agent displays one of two possible moods (good mood, bad mood). These are not as volatile as emotions, but rather persist over time. However, they are changeable. Mood impact event (a mood being shared/transmitted from one agent to the other) will only occur when the designated (arbitrary) sensory input/output sides face each other. As such, each agent will have four sides, with the lowest indexed face representing the input/output side. A mood impact event will follow an inverse square law as far as the degree to which it effects a given agent: at one tick, impact is 100% of the value; after two ticks, the impact is 1/4th the value; after three ticks, 1/9th the value, etc. There should probably be a constant parameter (multiplier). The point at which the impact should be considered zero (i.e., where the agent will have "forgotten" it) should also be a tunable parameter.
 
 If there is time at the end of the course, combinations of these agents in a single agent will be explored.
 </strong>
@@ -31,7 +31,7 @@ If there is time at the end of the course, combinations of these agents in a sin
 <strong>
 Personality agents can move in 2D space. Motivation will be based upon personality compatibility between neighbors.
 
-Emotional agents can move in 2D space. Motivation will be based upon those with similar moods.
+Emotional agents can move in 2D space. Motivation will be based upon those with similar emotions.
 
 Mood agents can move in 2D space. Motivation will be based upon those with similar moods, but with persistent/lingering effects.
 </strong>
