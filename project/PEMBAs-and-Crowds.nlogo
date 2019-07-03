@@ -1,46 +1,143 @@
-turtles-own [personality]
+turtles-own [
+  personality-id
+  personality-type
+  personality-neighbors
+]
 
 to setup
   clear-all
+  ;; agent-count is the total number of personality agents in the model; it is
+  ;; a global variable set via a slider in the GUI
   create-turtles agent-count [
     setxy random-xcor random-ycor
-    set personality random 4 ]
-  ask turtles [
-    if personality = 0 [
-      set color red
-    ]
-    if personality = 1 [
-      set color green
-    ]
-    if personality = 2 [
-      set color blue
-    ]
-    if personality = 3 [
-      set color yellow
-    ]
-  ]
+    set personality-id random 4 ]
+  set-personalities
   reset-ticks
 end
 
 to go
-  move-turtles
+  ask turtles [ move-personality-agents ]
+  repeat 5 [ ask turtles [ fd 0.2 ] display ]
   tick
 end
 
-to move-turtles
+to set-personalities
+  ;; We define two simple personality types here, whose sole characteristics are
+  ;; just the names of the types: I and II.
+  ;;
+  ;; * abstractly similar / dissimilar
+  ;; * abstractly attractrf / repulsed (think of gravity as the analogy here,
+  ;;   not physical appearance, etc.)
+  ;;
+  ;; Viewing these in a grid is helpful:
+  ;;
+  ;;         |  Type I     |  Type II    |
+  ;; --------+-------------+-------------+
+  ;; Type I  |  Attracted  |  Attracted  |
+  ;; Type II |  Repulsed   |  Repulsed   |
+  ;; --------+-------------+-------------+
+  ;;
+  ;; Which gives us a full set of type interaction permutations to explore, namely
+  ;; specific types that are:
+  ;;
+  ;; * similar and attracted to each other
+  ;; * dissimilar and attracted to each other
+  ;; * similar and repulsed from each other
+  ;; * dissimilar and repulsed from each other
+  ;;
+  ;; That being said, it's not exactly the most convenient way to explore the
+  ;; personality interactions. The behaviours shown in that grid will change
+  ;; based upon the initiating agent's personality type:
+  ;;
+  ;; * Type I(top) to Type II(side) are repulsed, whereas
+  ;; * Type II(top) to Type I(side) are attracted.
+  ;;
+  ;; As such, it would be useful to make them more distinct, perhaps something
+  ;; along these lines:
+  ;;
+  ;;          |  Type Ia    |  Type IIa   |
+  ;; ---------+-------------+-------------+
+  ;; Type Ib  |  Attracted  |  Attracted  |
+  ;; Type IIb |  Repulsed   |  Repulsed   |
+  ;; ---------+-------------+-------------+
+  ;;
+  ;; Now we can say with more clarity:
+  ;;
+  ;; * Type Ia and Type IIb are repulsed;
+  ;; * Type Ib and Type IIa are attracted.
+  ;;
+  ;; Then, by an aribtrary convention, we could assign integers to the
+  ;; different personality types; from  the top-left, clockwise around the
+  ;; table:
+  ;;
+  ;; * Type Ia: 0
+  ;; * Type IIa: 1
+  ;; * Type Ib: 2
+  ;; * Type IIb: 3
+  ;;
+  ;; Note that the interaction force will be provided by a separate function,
+  ;; `get-interaction-force`
+  ;;
   ask turtles [
-    right random 30
-    forward 1
+    if personality-id = 0 [
+      set color red
+      set personality-type "Ia"
+    ]
+    if personality-id = 1 [
+      set color green
+      set personality-type "IIa"
+    ]
+    if personality-id = 2 [
+      set color blue
+      set personality-type "IIb"
+    ]
+    if personality-id = 3 [
+      set color yellow
+      set personality-type "Ib"
+    ]
   ]
 end
-;; Copyright 2019 Duncan McGreggor.
-;; See Info tab for full copyright and license.
+
+to move-personality-agents ;; turtle procedure
+  find-neighbors
+  if any? personality-neighbors [
+    take-interaction-step
+    take-random-step
+  ]
+end
+
+to find-neighbors ;; turtle procedure
+  ;; interaction-radius is the distance within which personality agents
+  ;; will have an impact on each other; it is a global variable set via a
+  ;; slider in the GUI
+  set personality-neighbors other turtles in-radius interaction-radius
+end
+
+to take-interaction-step
+  ;; TBD
+end
+
+to get-interaction-force
+  ;; TBD
+  ;; force-multiplier is an arbitrary rational number that limits the
+  ;; force of personality interaction, from zero, though to partial, to
+  ;; maximum influence; it is a global variable set via a slider in the
+  ;; GUI
+end
+
+to take-random-step
+  right random 30
+  forward 1
+end
+
+;; Copyright © 2019 Duncan McGreggor.
+;; See "Info" tab for full copyright and license.
 @#$#@#$#@
 GRAPHICS-WINDOW
-376
-25
-813
-463
+216
+24
+1069
+566
 -1
 -1
 13.0
@@ -53,10 +150,10 @@ GRAPHICS-WINDOW
 1
 1
 1
--16
-16
--16
-16
+-32
+32
+-20
+20
 1
 1
 1
@@ -64,10 +161,10 @@ ticks
 30.0
 
 BUTTON
-205
-38
-271
-71
+19
+244
+85
+277
 NIL
 setup
 NIL
@@ -81,10 +178,10 @@ NIL
 1
 
 BUTTON
-287
-38
-350
-71
+101
+244
+164
+277
 NIL
 go
 T
@@ -98,16 +195,66 @@ NIL
 0
 
 SLIDER
-18
-37
-190
-70
+19
+63
+191
+96
 agent-count
 agent-count
 4
 1000
-99.0
+4.0
 1
+1
+NIL
+HORIZONTAL
+
+TEXTBOX
+20
+27
+170
+49
+Initial Conditions
+18
+0.0
+1
+
+SLIDER
+18
+109
+190
+142
+interaction-radius
+interaction-radius
+0
+100
+13.0
+1
+1
+NIL
+HORIZONTAL
+
+TEXTBOX
+20
+205
+170
+227
+Model Manager
+18
+0.0
+1
+
+SLIDER
+18
+156
+190
+189
+force-multiplier
+force-multiplier
+0
+1
+0.5
+0.01
 1
 NIL
 HORIZONTAL
