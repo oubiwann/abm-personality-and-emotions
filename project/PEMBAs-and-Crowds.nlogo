@@ -1,11 +1,20 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;   Turtle Data   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 turtles-own [
   personality-id
   personality-type
   personality-neighbors
 ]
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;   Setup Functions   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 to setup
   clear-all
+  set-default-shape turtles "circle"
   ;; agent-count is the total number of personality agents in the model; it is
   ;; a global variable set via a slider in the GUI
   create-turtles agent-count [
@@ -15,13 +24,9 @@ to setup
   reset-ticks
 end
 
-to go
-  ask turtles [ move-personality-agents ]
-  repeat 5 [ ask turtles [ fd 0.2 ] display ]
-  tick
-end
-
 to set-personalities
+  ;; XXX Once this is ironed out, move salient details to info tab ...
+  ;;
   ;; We define two simple personality types here, whose sole characteristics are
   ;; just the names of the types: I and II.
   ;;
@@ -67,7 +72,7 @@ to set-personalities
   ;; * Type Ib and Type IIa are attracted.
   ;;
   ;; Then, by an aribtrary convention, we could assign integers to the
-  ;; different personality types; from  the top-left, clockwise around the
+  ;; different personality types; from the top-left, clockwise around the
   ;; table:
   ;;
   ;; * Type Ia: 0
@@ -98,15 +103,29 @@ to set-personalities
   ]
 end
 
-to move-personality-agents ;; turtle procedure
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;   Entrypoint Procedure   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+to go
+  ask turtles [ move-personality-agents ]
+  tick
+end
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;   Turtle Procedures   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+to move-personality-agents
   find-neighbors
   if any? personality-neighbors [
-    take-interaction-step
+    ;;take-interaction-step
+    take-random-step
     take-random-step
   ]
 end
 
-to find-neighbors ;; turtle procedure
+to find-neighbors
   ;; interaction-radius is the distance within which personality agents
   ;; will have an impact on each other; it is a global variable set via a
   ;; slider in the GUI
@@ -117,8 +136,22 @@ to take-interaction-step
   ;; TBD
 end
 
-to get-interaction-force
-  ;; TBD
+to-report force-signs
+  report (list personality-id
+               (map [ i -> [personality-id] of i] personality-neighbors))
+end
+
+to-report interaction-force
+  ;; This procedure calculates the force of personalities on the current
+  ;; agent from all of its neighbors. This involves several steps:
+  ;;
+  ;; 1. Get the distance to each neighbor (direction)
+  ;; 2. Get the personality type of each neighbor and calculate its impact
+  ;;    on the current agent (magnitude)
+  ;; 3. With 1 & 2, create a vector for each neighbor
+  ;; 4. Calulate the sum of the "forces" of these vectors; if positive, the
+  ;;    agent will be attracted, and if negative, the agent will be repulsed.
+
   ;; force-multiplier is an arbitrary rational number that limits the
   ;; force of personality interaction, from zero, though to partial, to
   ;; maximum influence; it is a global variable set via a slider in the
@@ -126,9 +159,16 @@ to get-interaction-force
 end
 
 to take-random-step
-  right random 30
+  ;;set heading random 360
+  rt random 30
   forward 1
 end
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;   Support Procedures   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; TBD
 
 ;; Copyright © 2019 Duncan McGreggor.
 ;; See "Info" tab for full copyright and license.
@@ -203,7 +243,7 @@ agent-count
 agent-count
 4
 1000
-4.0
+36.0
 1
 1
 NIL
@@ -228,7 +268,7 @@ interaction-radius
 interaction-radius
 0
 100
-13.0
+25.0
 1
 1
 NIL
