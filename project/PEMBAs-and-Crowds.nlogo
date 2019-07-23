@@ -19,7 +19,9 @@ to setup
   ;; a global variable set via a slider in the GUI
   create-turtles agent-count [
     setxy random-xcor random-ycor
-    set personality-id random 4 ]
+    set personality-id random 4
+    set personality-neighbors nobody
+  ]
   set-personalities
   reset-ticks
 end
@@ -118,18 +120,22 @@ end
 
 to move-personality-agents
   find-neighbors
-  if any? personality-neighbors [
-    ;;take-interaction-step
-    take-random-step
-    take-random-step
-  ]
+  ifelse any? personality-neighbors
+    [ take-interaction-step ]
+    [ take-random-step ]
 end
 
 to find-neighbors
   ;; interaction-radius is the distance within which personality agents
   ;; will have an impact on each other; it is a global variable set via a
   ;; slider in the GUI
-  set personality-neighbors other turtles in-radius interaction-radius
+  set personality-neighbors (in-radius2 (other turtles) interaction-radius)
+end
+
+to-report in-radius2 [agentset r]
+  ;; This procedure is required due to the following bug in NetLogo 6.1:
+  ;;   https://github.com/NetLogo/NetLogo/issues/1763
+  report (agentset with [ distance myself <= r ])
 end
 
 to take-interaction-step
@@ -243,7 +249,7 @@ agent-count
 agent-count
 4
 1000
-36.0
+404.0
 1
 1
 NIL
@@ -268,7 +274,7 @@ interaction-radius
 interaction-radius
 0
 100
-25.0
+22.0
 1
 1
 NIL
