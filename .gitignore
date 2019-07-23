@@ -1,1 +1,3 @@
 /project/.*.tmp.nlogo
+/project/.lein*
+/project/target/
