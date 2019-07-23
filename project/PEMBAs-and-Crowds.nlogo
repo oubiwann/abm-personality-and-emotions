@@ -36,13 +36,14 @@ to set-personalities
   ;; * abstractly attractrf / repulsed (think of gravity as the analogy here,
   ;;   not physical appearance, etc.)
   ;;
-  ;; Viewing these in a grid is helpful:
+  ;; Viewing these types in a grid is helpful, with a `+` indicating agents that
+  ;; are attracted, and a `-` indicating agents that are repulsed:
   ;;
-  ;;         |  Type I     |  Type II    |
-  ;; --------+-------------+-------------+
-  ;; Type I  |  Attracted  |  Attracted  |
-  ;; Type II |  Repulsed   |  Repulsed   |
-  ;; --------+-------------+-------------+
+  ;;     | I | II |
+  ;; ----+---+----+
+  ;;   I | +    + |
+  ;;  II | -    - |
+  ;; ----+---+----+
   ;;
   ;; Which gives us a full set of type interaction permutations to explore, namely
   ;; specific types that are:
@@ -62,24 +63,44 @@ to set-personalities
   ;; As such, it would be useful to make them more distinct, perhaps something
   ;; along these lines:
   ;;
-  ;;          |  Type Ia    |  Type IIa   |
-  ;; ---------+-------------+-------------+
-  ;; Type Ib  |  Attracted  |  Attracted  |
-  ;; Type IIb |  Repulsed   |  Repulsed   |
-  ;; ---------+-------------+-------------+
+  ;;      | Ia | IIa |
+  ;; -----+----+----+
+  ;;   Ib |  +    + |
+  ;;  IIb |  -    - |
+  ;; -----+----+----+
   ;;
   ;; Now we can say with more clarity:
   ;;
   ;; * Type Ia and Type IIb are repulsed;
   ;; * Type Ib and Type IIa are attracted.
   ;;
-  ;; Then, by an aribtrary convention, we could assign integers to the
-  ;; different personality types; from the top-left, clockwise around the
-  ;; table:
+  ;; However, while this provides a quick look at how different types interact
+  ;; with each other, we can't tell from this how each agent interacts with
+  ;; other agents of its own types. To split things evently, let's say that:
+  ;;
+  ;; * all I's are attracted to other I's
+  ;; * all II's are repulsed from other II's
+  ;; * IIa's and Ib's are attracted
+  ;; * Ia's and IIb's are repulsed
+  ;;
+  ;; That set of rules then gives us the following grid:
+  ;;
+  ;;      | Ia | Ib | IIa | IIb |
+  ;; -----+----+----+-----+----+
+  ;;   Ia |  +    +    +     -
+  ;;   Ib |       +    +     -
+  ;;  IIa |            -     -
+  ;;  IIb |                  -
+  ;;
+  ;; Note that only one portion of the grid is required in this model, since
+  ;; for simplicity's sake, we're making all attractions/repulsions reciprocal.
+  ;;
+  ;; By an aribtrary convention, we could assign integers to the different
+  ;; personality types; from the left across the column headers in the grid:
   ;;
   ;; * Type Ia: 0
-  ;; * Type IIa: 1
-  ;; * Type Ib: 2
+  ;; * Type Ib: 1
+  ;; * Type IIa: 2
   ;; * Type IIb: 3
   ;;
   ;; Note that the interaction force will be provided by a separate function,
