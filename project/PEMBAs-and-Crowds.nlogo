@@ -153,12 +153,6 @@ to find-neighbors
   set personality-neighbors (in-radius2 (other turtles) interaction-radius)
 end
 
-to-report in-radius2 [agentset r]
-  ;; This procedure is required due to the following bug in NetLogo 6.1:
-  ;;   https://github.com/NetLogo/NetLogo/issues/1763
-  report (agentset with [ distance myself <= r ])
-end
-
 to take-interaction-step
   ;; TBD
 end
@@ -195,7 +189,19 @@ end
 ;;;   Support Procedures   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; TBD
+to-report in-radius2 [agentset r]
+  ;; This procedure is required due to the following bug in NetLogo 6.1:
+  ;;   https://github.com/NetLogo/NetLogo/issues/1763
+  report (agentset with [ distance myself <= r ])
+end
+
+to-report attracted-types [self-type other-types]
+  report "hey!"
+end
+
+to-report repulsed-types [self-type other-types]
+  report "hey!"
+end
 
 ;; Copyright © 2019 Duncan McGreggor.
 ;; See "Info" tab for full copyright and license.
