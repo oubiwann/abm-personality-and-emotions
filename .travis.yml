@@ -1,5 +1,7 @@
-language: clojure
-lein: 2.8.3
+language: java
+sudo: required
+build:
+  - make travis-build
 script:
   - make test
 jdk:
