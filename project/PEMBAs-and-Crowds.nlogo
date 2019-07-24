@@ -181,26 +181,50 @@ end
 ;;;   Visual Debugging Procedures   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-to hilight
-    highlight-relations selected-agent
+to show-attracted
+  let agent turtle selected-agent
+  all-blue
+  agent-yellow agent
+  highlight-attracted agent
 end
 
-to highlight-relations [agent-id]
-  let agent turtle agent-id
-  let agent-personality [personality-id] of agent
-  let attracted-agents filter-attracted-agents agent [personality-neighbors] of agent
-  let repulsed-agents filter-repulsed-agents agent [personality-neighbors] of agent
-  ask turtles [
-    set color blue
-  ]
+to show-repulsed
+  let agent turtle selected-agent
+  all-blue
+  agent-yellow agent
+  highlight-repulsed agent
+end
+
+to show-relations
+  let agent turtle selected-agent
+  all-blue
+  agent-yellow agent
+  highlight-relations agent
+end
+
+to agent-yellow [agent]
   ask agent [
     set color yellow
     ]
+end
+
+to all-blue
+  ask turtles [
+    set color blue
+  ]
+end
+
+to highlight-attracted [agent]
+  let attracted-agents filter-attracted-agents agent
   if attracted-agents != nobody [
     ask attracted-agents [
       set color green
     ]
   ]
+end
+
+to highlight-repulsed [agent]
+  let repulsed-agents filter-repulsed-agents agent
   if repulsed-agents != nobody [
     ask repulsed-agents [
       set color red
@@ -208,14 +232,15 @@ to highlight-relations [agent-id]
   ]
 end
 
+to highlight-relations [agent]
+  highlight-attracted agent
+  highlight-repulsed agent
+end
+
 to set-agent-colors
   ask turtles [
     set color id-to-color personality-id
   ]
-end
-
-to-report get-agents [agent-ids]
-  report turtle-set map [x -> turtle x] agent-ids
 end
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -321,12 +346,14 @@ to-report agent-intersection [agents personality-ids]
   report turtle-set (map [x -> agents with [personality-id = x]] personality-ids)
 end
 
-to-report filter-attracted-agents [agent agents]
-  report agent-intersection agents (attracted-lookup [personality-id] of agent)
+to-report filter-attracted-agents [agent]
+  report agent-intersection [personality-neighbors] of agent
+                            (attracted-lookup [personality-id] of agent)
 end
 
-to-report filter-repulsed-agents [agent agents]
-  report agent-intersection agents (repulsed-lookup [personality-id] of agent)
+to-report filter-repulsed-agents [agent]
+  report agent-intersection [personality-neighbors] of agent
+                            (repulsed-lookup [personality-id] of agent)
 end
 
 ;; Copyright © 2019 Duncan McGreggor.
@@ -464,7 +491,7 @@ INPUTBOX
 115
 401
 selected-agent
-4.0
+0.0
 1
 0
 Number
@@ -480,12 +507,46 @@ Hilight
 1
 
 BUTTON
-118
-340
-173
-401
-hilight
-hilight
+17
+403
+115
+436
+show relations
+show-relations
+NIL
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+1
+
+BUTTON
+17
+440
+115
+473
+show attracted
+show-attracted
+NIL
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+1
+
+BUTTON
+17
+479
+117
+512
+show repulsed
+show-repulsed
 NIL
 1
 T
