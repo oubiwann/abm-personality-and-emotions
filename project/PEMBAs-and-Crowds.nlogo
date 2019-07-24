@@ -181,21 +181,31 @@ end
 ;;;   Visual Debugging Procedures   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+to hilight
+    highlight-relations selected-agent
+end
+
 to highlight-relations [agent-id]
   let agent turtle agent-id
   let agent-personality [personality-id] of agent
+  let attracted-agents filter-attracted-agents agent [personality-neighbors] of agent
+  let repulsed-agents filter-repulsed-agents agent [personality-neighbors] of agent
   ask turtles [
     set color blue
   ]
   ask agent [
     set color yellow
     ]
-  ask filter-attracted-agents agent [personality-neighbors] of agent [
-    set color green
+  if attracted-agents != nobody [
+    ask attracted-agents [
+      set color green
     ]
-  ask filter-repulsed-agents agent [personality-neighbors] of agent [
-    set color red
+  ]
+  if repulsed-agents != nobody [
+    ask repulsed-agents [
+      set color red
     ]
+  ]
 end
 
 to set-agent-colors
@@ -321,7 +331,6 @@ end
 
 ;; Copyright © 2019 Duncan McGreggor.
 ;; See "Info" tab for full copyright and license.
-
 @#$#@#$#@
 GRAPHICS-WINDOW
 216
@@ -352,9 +361,9 @@ ticks
 
 BUTTON
 19
-244
+250
 85
-277
+283
 NIL
 setup
 NIL
@@ -369,9 +378,9 @@ NIL
 
 BUTTON
 101
-244
+250
 164
-277
+283
 NIL
 go
 T
@@ -393,7 +402,7 @@ agent-count
 agent-count
 4
 1000
-108.0
+55.0
 1
 1
 NIL
@@ -418,7 +427,7 @@ interaction-radius
 interaction-radius
 0
 100
-27.0
+8.0
 1
 1
 NIL
@@ -426,9 +435,9 @@ HORIZONTAL
 
 TEXTBOX
 20
-205
+211
 170
-227
+233
 Model Manager
 18
 0.0
@@ -448,6 +457,44 @@ force-multiplier
 1
 NIL
 HORIZONTAL
+
+INPUTBOX
+18
+341
+115
+401
+selected-agent
+4.0
+1
+0
+Number
+
+TEXTBOX
+19
+305
+169
+327
+Hilight
+18
+0.0
+1
+
+BUTTON
+118
+340
+173
+401
+hilight
+hilight
+NIL
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+1
 
 @#$#@#$#@
 ## WHAT IS IT?
