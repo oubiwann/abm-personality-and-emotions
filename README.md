@@ -39,7 +39,7 @@ Apache License, Version 2.0.
 [logo-large]: resources/images/complexity-explorer-logo-x800.png
 [tag-badge]: https://img.shields.io/github/tag/oubiwann/intro-abm.svg
 [tag]: https://github.com/oubiwann/intro-abm/tags
-[clojure-v]: https://img.shields.io/badge/clojure-1.8.0-blue.svg
-[jdk-v]: https://img.shields.io/badge/jdk-1.7+-blue.svg
-[clojars]: https://clojars.org/oubiwann/intro-abm
-[clojars-badge]: https://img.shields.io/clojars/v/oubiwann/intro-abm.svg
+[clojure-v]: https://img.shields.io/badge/clojure-1.10.1-blue.svg
+[jdk-v]: https://img.shields.io/badge/jdk-1.11+-blue.svg
+[clojars]: https://clojars.org/pembas
+[clojars-badge]: https://img.shields.io/clojars/v/pembas.svg
