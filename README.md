@@ -3,7 +3,7 @@
 [![Build Status][travis-badge]][travis]
 [![Clojars Project][clojars-badge]][clojars]
 [![Tag][tag-badge]][tag]
-[![Clojure version][clojure-v]](project.clj)
+[![Clojure version][clojure-v]](project/project.clj)
 
 [![][logo]][logo-large]
 
