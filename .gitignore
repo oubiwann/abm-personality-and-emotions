@@ -1,3 +1,4 @@
 /project/.*.tmp.nlogo
 /project/.lein*
 /project/target/
+/project/pom.*

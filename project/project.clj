@@ -1,4 +1,5 @@
 (defproject pembas "0.1.0-SNAPSHOT"
+  :description "Introduction to Agent-Based Modeling (SFI/CI)"
   :url "http://github.com/oubiwann/intro-abm"
   :license {
     :name "Apache Version 2.0"
