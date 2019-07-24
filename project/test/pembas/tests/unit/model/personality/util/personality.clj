@@ -1,24 +1,14 @@
-(ns pembas.tests.unit.model.personality
+(ns pembas.tests.unit.model.personality.util.personality
   (:require
    [clojure.test :refer :all]
    [pembas.testing.netlogo :as netlogo]))
 
-(def model "PEMBAs-and-Crowds.nlogo")
+(def model "PEMBAs-and-Crowds-Personality.nlogo")
 
 (def netlogo-red "15")
 (def netlogo-green "55")
 (def netlogo-blue "105")
 (def netlogo-yellow "45")
-
-(deftest intersection
-  (let [ws (netlogo/create-workspace model)]
-    (is (= "[1 2]"
-           (netlogo/report ws "intersection" [0 1 2] [1 2 3])))))
-
-(deftest union
-  (let [ws (netlogo/create-workspace model)]
-    (is (= "[0 1 2 3]"
-           (netlogo/report ws "union" [0 1 2] [1 2 3])))))
 
 (deftest id-to-color
   (let [ws (netlogo/create-workspace model)]

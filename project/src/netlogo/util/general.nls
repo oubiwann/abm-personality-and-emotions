@@ -1,0 +1,17 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;   General Support Procedures   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+to-report in-radius2 [agentset r]
+  ;; This procedure is required due to the following bug in NetLogo 6.1:
+  ;;   https://github.com/NetLogo/NetLogo/issues/1763
+  report (agentset with [ distance myself <= r ])
+end
+
+to-report intersection [a b]
+  report filter [x -> member? x a] b
+end
+
+to-report union [a b]
+  report remove-duplicates sentence a b
+end

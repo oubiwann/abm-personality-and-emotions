@@ -1,0 +1,25 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;   Agent Support Procedures   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+to-report member-personality? [agent personality-ids]
+  let agent-personality [personality-id] of agent
+  if member? agent-personality personality-ids [ report true ]
+  report false
+end
+
+to-report agent-intersection [agents personality-ids]
+  if agents = nobody [ report agents ]
+  if personality-ids = [] [ report nobody ]
+  report turtle-set (map [x -> agents with [personality-id = x]] personality-ids)
+end
+
+to-report filter-attracted-agents [agent]
+  report agent-intersection [personality-neighbors] of agent
+                            (attracted-lookup [personality-id] of agent)
+end
+
+to-report filter-repulsed-agents [agent]
+  report agent-intersection [personality-neighbors] of agent
+                            (repulsed-lookup [personality-id] of agent)
+end

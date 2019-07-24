@@ -1,12 +1,43 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;   Global Data   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+globals []
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;   Turtle Data   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+turtles-own [
+  personality-id
+  personality-type
+  personality-neighbors
+]
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;   Source Includes   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+__includes [
+  "src/netlogo/agent.nls"
+  "src/netlogo/debugging.nls"
+  "src/netlogo/main/personality.nls"
+  "src/netlogo/setup.nls"
+  "src/netlogo/turtle.nls"
+  "src/netlogo/util/charge.nls"
+  "src/netlogo/util/general.nls"
+  "src/netlogo/util/personality.nls"
+  ]
+
 ;; Copyright © 2019 Duncan McGreggor.
 ;; See "Info" tab for full copyright and license.
 ;;
 @#$#@#$#@
 GRAPHICS-WINDOW
-210
-10
-647
-448
+216
+24
+1069
+566
 -1
 -1
 13.0
@@ -16,18 +47,206 @@ GRAPHICS-WINDOW
 1
 1
 0
-1
-1
-1
--16
-16
--16
-16
 0
 0
+1
+-32
+32
+-20
+20
+1
+1
 1
 ticks
 30.0
+
+BUTTON
+19
+250
+85
+283
+NIL
+setup
+NIL
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+1
+
+BUTTON
+101
+250
+164
+283
+NIL
+go
+T
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+0
+
+SLIDER
+19
+63
+191
+96
+agent-count
+agent-count
+4
+1000
+55.0
+1
+1
+NIL
+HORIZONTAL
+
+TEXTBOX
+20
+27
+170
+49
+Initial Conditions
+18
+0.0
+1
+
+SLIDER
+18
+109
+190
+142
+interaction-radius
+interaction-radius
+0
+100
+8.0
+1
+1
+NIL
+HORIZONTAL
+
+TEXTBOX
+20
+211
+170
+233
+Model Manager
+18
+0.0
+1
+
+SLIDER
+18
+156
+190
+189
+force-multiplier
+force-multiplier
+0
+1
+0.5
+0.01
+1
+NIL
+HORIZONTAL
+
+INPUTBOX
+18
+341
+115
+401
+selected-agent
+0.0
+1
+0
+Number
+
+TEXTBOX
+19
+305
+169
+327
+Hilight
+18
+0.0
+1
+
+BUTTON
+17
+403
+115
+436
+show relations
+show-relations
+NIL
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+1
+
+BUTTON
+17
+440
+115
+473
+show attracted
+show-attracted
+NIL
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+1
+
+BUTTON
+17
+479
+117
+512
+show repulsed
+show-repulsed
+NIL
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+1
+
+BUTTON
+17
+518
+117
+551
+reset colors
+set-agent-colors
+NIL
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+1
 
 @#$#@#$#@
 ## WHAT IS IT?
@@ -62,9 +281,32 @@ ticks
 
 (models in the NetLogo Models Library and elsewhere which are of related interest)
 
-## CREDITS AND REFERENCES
+## HOW TO CITE
 
-(a reference to the model's URL on the web if it has one, as well as any other necessary credits, citations, and links)
+If you mention this model in a publication, we ask that you include the citations below.
+
+McGreggor, D. (2019). NetLogo Simple XXX Model. https://github.com/oubiwann/intro-abm/tree/master/project.
+
+## REFERENCES
+
+1. [Github project](https://github.com/oubiwann/intro-abm).
+1. A Model for Personality and Emotion Simulation, Arjan Egges-Sumedha Kshirsagar-Nadia Magnenat-Thalmann - Lecture Notes in Computer Science Knowledge-Based Intelligent Information and Engineering Systems - 2003
+
+## COPYRIGHT AND LICENSE
+
+Copyright © 2019 Duncan McGreggor.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
 @#$#@#$#@
 default
 true
