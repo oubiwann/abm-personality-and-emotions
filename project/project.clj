@@ -9,6 +9,7 @@
   :dependencies [
     [org.clojure/clojure "1.10.1"]
     [org.nlogo/netlogo "6.1.0"]]
+  :source-paths ["src/clj"]
   :profiles {
     :test {
       :resource-paths ["./"]
