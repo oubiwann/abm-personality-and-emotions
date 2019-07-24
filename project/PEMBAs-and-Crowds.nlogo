@@ -149,11 +149,6 @@ to take-interaction-step
   ;; TBD
 end
 
-to-report force-signs
-  report (list personality-id
-               (map [ i -> [personality-id] of i] personality-neighbors))
-end
-
 to-report interaction-force
   ;; This procedure calculates the force of personalities on the current
   ;; agent from all of its neighbors. This involves several steps:
@@ -328,6 +323,47 @@ end
 
 to-report filter-repulsed [self-type other-types]
   report intersection (repulsed-lookup self-type) other-types
+end
+
+to-report summed-charge
+  ;;
+
+end
+
+to-report charge-magnitude
+  ;; The magnitude of an attractive or repuslive "charge" is given by
+  ;; the inverse square of the distance from the agent in question
+
+end
+
+to-report center-of-charge
+  ;; The "center of charge" is given by the x and y components of the nearby
+  ;; personalities times their associated charge magnitudes, then divided by the
+  ;; sums of their magnitudes. This is analogous to center of mass calcualtions
+  ;; in two dimensions.
+  ;;
+  ;; Steps are as follows, for all agents:
+  ;; 1) Get their distance from self; square it and invert it. This is the
+  ;;    magnitude.
+  ;; 2) Get each xcoord and multiply by magnitude, sum the results
+  ;; 3) Sum the magnitudes and divide the results of the previous step by this
+  ;; 4) Do steps 2 & 3 for ycoords; the combination of these two results
+  ;;    represents the x,y coord of the "center of charge".
+end
+
+to-report sum-forces
+  ;; This procedure does the following:
+  ;; * gets the "center of charge" for attracting agents
+  ;; * gets the "center of charge" for repulsing agents
+  ;; * calculates their magnitude using the `charge-magnitude` function
+  ;; * transforms the repulsing location by putting it on the other side
+  ;;   of the agent and then treating it as attracting
+  ;; * calculates the sum of the magnitudes
+  ;; * calculates the sum of the vector components
+  ;;
+  ;; Once these steps are done, the direction can be converted to degrees so
+  ;; that the agent can face that direction, and the magnitude can be used to
+  ;; move the agent that many units in the direction it faces.
 end
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
