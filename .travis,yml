@@ -1,7 +1,7 @@
 language: clojure
 lein: 2.8.3
 script:
-  - lcd project && ein ltest
+  - make test
 jdk:
   - oraclejdk8
   - openjdk8
