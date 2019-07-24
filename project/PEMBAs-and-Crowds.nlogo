@@ -1,4 +1,10 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;   Global Data   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+globals []
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;   Turtle Data   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -106,23 +112,9 @@ to set-personalities
   ;; Note that the interaction force will be provided by a separate function,
   ;; `get-interaction-force`
   ;;
+  set-agent-colors
   ask turtles [
-    if personality-id = 0 [
-      set color red
-      set personality-type "Ia"
-    ]
-    if personality-id = 1 [
-      set color green
-      set personality-type "IIa"
-    ]
-    if personality-id = 2 [
-      set color blue
-      set personality-type "IIb"
-    ]
-    if personality-id = 3 [
-      set color yellow
-      set personality-type "Ib"
-    ]
+    set personality-type id-to-name personality-id
   ]
 end
 
@@ -186,7 +178,38 @@ to take-random-step
 end
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;   Support Procedures   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;   Visual Debugging Procedures   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+to highlight-relations [agent-id]
+  let agent turtle agent-id
+  let agent-personality [personality-id] of agent
+  ask turtles [
+    set color blue
+  ]
+  ask agent [
+    set color yellow
+    ]
+  ask filter-attracted-agents agent [personality-neighbors] of agent [
+    set color green
+    ]
+  ask filter-repulsed-agents agent [personality-neighbors] of agent [
+    set color red
+    ]
+end
+
+to set-agent-colors
+  ask turtles [
+    set color id-to-color personality-id
+  ]
+end
+
+to-report get-agents [agent-ids]
+  report turtle-set map [x -> turtle x] agent-ids
+end
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;   General Support Procedures   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 to-report in-radius2 [agentset r]
@@ -195,16 +218,110 @@ to-report in-radius2 [agentset r]
   report (agentset with [ distance myself <= r ])
 end
 
-to-report attracted-types [self-type other-types]
-  report "hey!"
+to-report intersection [a b]
+  report filter [x -> member? x a] b
 end
 
-to-report repulsed-types [self-type other-types]
-  report "hey!"
+to-report union [a b]
+  report remove-duplicates sentence a b
+end
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;   Personality Support Procedures   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+to-report id-to-color [type-id]
+  if type-id = 0 [ report red ]
+  if type-id = 1 [ report green ]
+  if type-id = 2 [ report blue ]
+  if type-id = 3 [ report yellow ]
+end
+
+to-report id-to-name [type-id]
+  if type-id = 0 [ report "Ia" ]
+  if type-id = 1 [ report "Ib" ]
+  if type-id = 2 [ report "IIa" ]
+  if type-id = 3 [ report "IIb" ]
+end
+
+to-report name-to-id [type-name]
+  if type-name = "Ia" [ report 0 ]
+  if type-name = "Ib" [ report 1 ]
+  if type-name = "IIa" [ report 2 ]
+  if type-name = "IIb" [ report 3 ]
+end
+
+;; For the following attraction/repulsion procedures, the grid from the
+;; `set-personalities` procedure documentation is useful:
+;;
+;;      | Ia | Ib | IIa | IIb |
+;; -----+----+----+-----+----+
+;;   Ia |  +    +    +     -
+;;   Ib |       +    +     -
+;;  IIa |            -     -
+;;  IIb |                  -
+;;
+;; More so if we convert that to the integer values:
+;;
+;;    | 0 | 1 | 2 | 3 |
+;; ---+---+---+---+---+
+;;  0 | +   +   +   -
+;;  1 |     +   +   -
+;;  2 |         -   -
+;;  3 |             -
+;;
+
+to-report attracted-lookup [self-type]
+  if self-type = 0 [ report [0 1 2] ]
+  if self-type = 1 [ report [0 1 2] ]
+  if self-type = 2 [ report [0 1] ]
+  if self-type = 3 [ report [] ]
+  report word "Unkown type: " self-type
+end
+
+to-report repulsed-lookup [self-type]
+  if self-type = 0 [ report [3] ]
+  if self-type = 1 [ report [3] ]
+  if self-type = 2 [ report [2 3] ]
+  if self-type = 3 [ report [0 1 2 3] ]
+  report word "Unkown type: " self-type
+end
+
+to-report filter-attracted [self-type other-types]
+  report intersection (attracted-lookup self-type) other-types
+end
+
+to-report filter-repulsed [self-type other-types]
+  report intersection (repulsed-lookup self-type) other-types
+end
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;   Agent Support Procedures   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+to-report member-personality? [agent personality-ids]
+  let agent-personality [personality-id] of agent
+  if member? agent-personality personality-ids [ report true ]
+  report false
+end
+
+to-report agent-intersection [agents personality-ids]
+  if agents = nobody [ report agents ]
+  if personality-ids = [] [ report nobody ]
+  report turtle-set (map [x -> agents with [personality-id = x]] personality-ids)
+end
+
+to-report filter-attracted-agents [agent agents]
+  report agent-intersection agents (attracted-lookup [personality-id] of agent)
+end
+
+to-report filter-repulsed-agents [agent agents]
+  report agent-intersection agents (repulsed-lookup [personality-id] of agent)
 end
 
 ;; Copyright © 2019 Duncan McGreggor.
 ;; See "Info" tab for full copyright and license.
+
 @#$#@#$#@
 GRAPHICS-WINDOW
 216
@@ -220,8 +337,8 @@ GRAPHICS-WINDOW
 1
 1
 0
-1
-1
+0
+0
 1
 -32
 32
@@ -276,7 +393,7 @@ agent-count
 agent-count
 4
 1000
-404.0
+108.0
 1
 1
 NIL
@@ -301,7 +418,7 @@ interaction-radius
 interaction-radius
 0
 100
-22.0
+27.0
 1
 1
 NIL
