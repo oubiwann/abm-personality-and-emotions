@@ -7,10 +7,6 @@
    (org.nlogo.headless HeadlessWorkspace)
    (org.nlogo.util Utils)))
 
-(defn load-model
-  [model-path]
-  (slurp (io/resource model-path)))
-
 (defn create-workspace
   [model-path]
   (let [ws (HeadlessWorkspace/newInstance)]
