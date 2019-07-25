@@ -9,6 +9,9 @@ to setup
   ;; a global variable set via a slider in the GUI
   create-turtles agent-count [
     setxy random-xcor random-ycor
+    ;; We use a personality model of two types and type subtypes, giving us a
+    ;; total of four personalities. For details, see the code documentation
+    ;; in in `util/personality.nls`.
     set personality-id random 4
     set personality-neighbors nobody
   ]
@@ -17,85 +20,6 @@ to setup
 end
 
 to set-personalities
-  ;; XXX Once this is ironed out, move salient details to info tab ...
-  ;;
-  ;; We define two simple personality types here, whose sole characteristics are
-  ;; just the names of the types: I and II.
-  ;;
-  ;; * abstractly similar / dissimilar
-  ;; * abstractly attractrf / repulsed (think of gravity as the analogy here,
-  ;;   not physical appearance, etc.)
-  ;;
-  ;; Viewing these types in a grid is helpful, with a `+` indicating agents that
-  ;; are attracted, and a `-` indicating agents that are repulsed:
-  ;;
-  ;;     | I | II |
-  ;; ----+---+----+
-  ;;   I | +    + |
-  ;;  II | -    - |
-  ;; ----+---+----+
-  ;;
-  ;; Which gives us a full set of type interaction permutations to explore, namely
-  ;; specific types that are:
-  ;;
-  ;; * similar and attracted to each other
-  ;; * dissimilar and attracted to each other
-  ;; * similar and repulsed from each other
-  ;; * dissimilar and repulsed from each other
-  ;;
-  ;; That being said, it's not exactly the most convenient way to explore the
-  ;; personality interactions. The behaviours shown in that grid will change
-  ;; based upon the initiating agent's personality type:
-  ;;
-  ;; * Type I(top) to Type II(side) are repulsed, whereas
-  ;; * Type II(top) to Type I(side) are attracted.
-  ;;
-  ;; As such, it would be useful to make them more distinct, perhaps something
-  ;; along these lines:
-  ;;
-  ;;      | Ia | IIa |
-  ;; -----+----+----+
-  ;;   Ib |  +    + |
-  ;;  IIb |  -    - |
-  ;; -----+----+----+
-  ;;
-  ;; Now we can say with more clarity:
-  ;;
-  ;; * Type Ia and Type IIb are repulsed;
-  ;; * Type Ib and Type IIa are attracted.
-  ;;
-  ;; However, while this provides a quick look at how different types interact
-  ;; with each other, we can't tell from this how each agent interacts with
-  ;; other agents of its own types. To split things evently, let's say that:
-  ;;
-  ;; * all I's are attracted to other I's
-  ;; * all II's are repulsed from other II's
-  ;; * IIa's and Ib's are attracted
-  ;; * Ia's and IIb's are repulsed
-  ;;
-  ;; That set of rules then gives us the following grid:
-  ;;
-  ;;      | Ia | Ib | IIa | IIb |
-  ;; -----+----+----+-----+----+
-  ;;   Ia |  +    +    +     -
-  ;;   Ib |       +    +     -
-  ;;  IIa |            -     -
-  ;;  IIb |                  -
-  ;;
-  ;; Note that only one portion of the grid is required in this model, since
-  ;; for simplicity's sake, we're making all attractions/repulsions reciprocal.
-  ;;
-  ;; By an aribtrary convention, we could assign integers to the different
-  ;; personality types; from the left across the column headers in the grid:
-  ;;
-  ;; * Type Ia: 0
-  ;; * Type Ib: 1
-  ;; * Type IIa: 2
-  ;; * Type IIb: 3
-  ;;
-  ;; Note that the interaction force will be provided by a separate function,
-  ;; `get-interaction-force`
-  ;;
   set-agent-colors
   ask turtles [
     set personality-type id-to-name personality-id

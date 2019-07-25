@@ -1,13 +1,56 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;   Personality Support Procedures   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-to-report id-to-color [type-id]
-  if type-id = 0 [ report red ]
-  if type-id = 1 [ report green ]
-  if type-id = 2 [ report blue ]
-  if type-id = 3 [ report yellow ]
-end
+;;
+;; We started the creation of our personality model with just two simple
+;; personality types, I and II. Their only characteristics were defined as
+;; capturing the following:
+;;
+;; * abstractly similar / dissimilar
+;; * abstractly attracting / repulsing
+;;
+;; Viewing these types in a grid is helpful, with the type names representing
+;; the similar/dissimilar characteristic and the +/- representing the
+;; attracting/repulsing characteristic:
+;;
+;;     | I | II |
+;; ----+---+----+
+;;   I | +    - |
+;;  II | +    - |
+;; ----+---+----+
+;;
+;; This gives us a visual for some of the interaction permutations to explore,
+;; namely specific types that are:
+;;
+;; * similar and attracted to each other
+;; * dissimilar and attracted to each other
+;; * similar and repulsed from each other
+;; * dissimilar and repulsed from each other
+;;
+;; That being said, it's not exactly the most convenient way to explore the
+;; personality interactions. The behaviours shown in that grid will change
+;; based upon the initiating agent's personality type. For instance:
+;;
+;; * Type II(top) to Type I(side) are repulsed, whereas
+;; * Type II(side) to Type I(top) are attracted.
+;;
+;; As such, it would be useful to make them more distinct, perhaps something
+;; along these lines, using subtypes:
+;;
+;;      | Ia | IIa |
+;; -----+----+-----+
+;;   Ib |  +    -  |
+;;  IIb |  +    -  |
+;; -----+----+-----+
+;;
+;; Now we can say with more clarity:
+;;
+;; * Type I's are attracted to each other
+;; * Type II's are repulsed from each other
+;;
+;; By an aribtrary convention, we could assign integers to the different
+;; personality types:
+;;
 
 to-report id-to-name [type-id]
   if type-id = 0 [ report "Ia" ]
@@ -23,39 +66,123 @@ to-report name-to-id [type-name]
   if type-name = "IIb" [ report 3 ]
 end
 
-;; For the following attraction/repulsion procedures, the grid from the
-;; `set-personalities` procedure documentation is useful:
+;; Arbitrary color assignmentn to personality types:
+to-report id-to-color [type-id]
+  if type-id = 0 [ report red ]
+  if type-id = 1 [ report green ]
+  if type-id = 2 [ report blue ]
+  if type-id = 3 [ report yellow ]
+end
+
+;; The two rules that we gave in bullet points above don't capture all the
+;; interactions shown in the grid: we could say types Ia and IIb are attracted
+;; while types Ib and IIa are repulsed. However, a more general rule can be
+;; created that captures interations that are missing from the grid.
+;;
+;; The main problem the grid above has is that we can't see how each agent
+;; interacts with other agents of its own type. Here's a grid that can show self
+;; interactions, but shows only the four interactions given above:
 ;;
 ;;      | Ia | Ib | IIa | IIb |
-;; -----+----+----+-----+----+
-;;   Ia |  +    +    +     -
-;;   Ib |       +    +     -
+;; -----+----+----+-----+-----+
+;;   Ia |       +          +
+;;   Ib |            -
+;;  IIa |                  -
+;;  IIb |
+;;
+;; Note that only one portion of the grid is required in this model, since
+;; for simplicity's sake, we're making all attractions/repulsions reciprocal.
+;; As such, only the upper-right portion of this type of grid will ever be
+;; filled in.
+;;
+;; There are a few things missing from the grid above:
+;;
+;; * self interactions
+;; * interactions between subtypes.
+;;
+;; To address this, let's restate our rules #1 and #2 from above and add some
+;; more that both address all possible interactions while utlimately giving an
+;; even number of attracting and repulsing interactions:
+;;
+;; 1) Type I's are attracted to each other
+;; 2) Type II's are repulsed from each other
+;; 3) a's of different types are attracted
+;; 4) b's of different types are repulsed
+;; 5) Ia's of differemt types and subtypes are attracted
+;; 6) Ib's of differemt types and subtypes are repulsed
+;;
+;;
+;; #1 gives us this:
+;;
+;;      | Ia | Ib | IIa | IIb |
+;; -----+----+----+-----+-----+
+;;   Ia |  +    +          +
+;;   Ib |       +    -
+;;  IIa |                  -
+;;  IIb |
+;;
+;; #2 gives us this:
+;;
+;;      | Ia | Ib | IIa | IIb |
+;; -----+----+----+-----+-----+
+;;   Ia |  +    +          +
+;;   Ib |       +
 ;;  IIa |            -     -
 ;;  IIb |                  -
 ;;
-;; More so if we convert that to the integer values:
+;; #3 gives us this:
+;;
+;;      | Ia | Ib | IIa | IIb |
+;; -----+----+----+-----+-----+
+;;   Ia |  +    +    +     +
+;;   Ib |       +
+;;  IIa |            -     -
+;;  IIb |                  -
+;;
+;; #4 gives us this:
+;;
+;;      | Ia | Ib | IIa | IIb |
+;; -----+----+----+-----+-----+
+;;   Ia |  +    +    +     +
+;;   Ib |       +          -
+;;  IIa |            -     -
+;;  IIb |                  -
+;;
+;; #5 is already caputred, and #6 gives us this:
+;;
+;;      | Ia | Ib | IIa | IIb |
+;; -----+----+----+-----+-----+
+;;   Ia |  +    +    +     +
+;;   Ib |       +    -     -
+;;  IIa |            -     -
+;;  IIb |                  -
+;;
+;;
+;; We can convert that grid to use our integer assignments for the types and
+;; subtypes so that it's easier to read the code in the following attraction/
+;; repulsion procedures:
 ;;
 ;;    | 0 | 1 | 2 | 3 |
 ;; ---+---+---+---+---+
-;;  0 | +   +   +   -
-;;  1 |     +   +   -
+;;  0 | +   +   +   +
+;;  1 |     +   -   -
 ;;  2 |         -   -
 ;;  3 |             -
 ;;
 
 to-report attracted-lookup [self-type]
-  if self-type = 0 [ report [0 1 2] ]
-  if self-type = 1 [ report [0 1 2] ]
-  if self-type = 2 [ report [0 1] ]
-  if self-type = 3 [ report [] ]
+  if self-type = 0 [ report [0 1 2 3] ]
+  if self-type = 1 [ report [0 1] ]
+  if self-type = 2 [ report [0] ]
+  if self-type = 3 [ report [0] ]
   report word "Unkown type: " self-type
 end
 
 to-report repulsed-lookup [self-type]
-  if self-type = 0 [ report [3] ]
-  if self-type = 1 [ report [3] ]
+  if self-type = 0 [ report [] ]
+  if self-type = 1 [ report [2 3] ]
   if self-type = 2 [ report [2 3] ]
-  if self-type = 3 [ report [0 1 2 3] ]
+  if self-type = 3 [ report [1 2 3] ]
   report word "Unkown type: " self-type
 end
 
