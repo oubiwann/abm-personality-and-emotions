@@ -45,24 +45,24 @@
 
 (deftest attracted-lookup
   (let [ws (netlogo/create-workspace model)]
-    (is (= "[0 1 2]"
+    (is (= "[0 1 2 3]"
            (netlogo/report ws "attracted-lookup" 0)))
-    (is (= "[0 1 2]"
-           (netlogo/report ws "attracted-lookup" 1)))
     (is (= "[0 1]"
+           (netlogo/report ws "attracted-lookup" 1)))
+    (is (= "[0]"
            (netlogo/report ws "attracted-lookup" 2)))
-    (is (= "[]"
+    (is (= "[0]"
            (netlogo/report ws "attracted-lookup" 3)))))
 
 (deftest repulsed-lookup
   (let [ws (netlogo/create-workspace model)]
-    (is (= "[3]"
+    (is (= "[]"
            (netlogo/report ws "repulsed-lookup" 0)))
-    (is (= "[3]"
+    (is (= "[2 3]"
            (netlogo/report ws "repulsed-lookup" 1)))
     (is (= "[2 3]"
            (netlogo/report ws "repulsed-lookup" 2)))
-    (is (= "[0 1 2 3]"
+    (is (= "[1 2 3]"
            (netlogo/report ws "repulsed-lookup" 3)))))
 
 (deftest filter-attracted

@@ -251,11 +251,61 @@ NIL
 @#$#@#$#@
 ## WHAT IS IT?
 
-(a general understanding of what the model is trying to show or explain)
+This is a model that explores interactions between set set of simple personality types and subtypes. Interactions occur as a result of "compatibility" between a type/subtype combination in two or more agents. The interaction itself is manifested by agents moving in the world: higher compatibility leads to movement towards, lower compatibility leads to movement away.
 
 ## HOW IT WORKS
 
-(what rules the agents use to create the overall behavior of the model)
+### Personality Model
+
+In order to model attractions between models of similar and dissimilar types, where there is attraction and repulsion for both, we've defined an arbitrary personality model that has two types and two subtypes:
+
+* `Ia`
+* `Ib`
+* `IIa`
+* `IIb`
+
+### Attraction Model
+
+All possible personality type interactions are given by the right triangular matrix:
+
+![Personality interaction matrix](file:../resources/images/personality-interaction-matrix.gif)
+
+with the following rules for attraction/repulsion:
+
+1. Type `I`'s are attracted to each other.
+2. Type `II`'s are repulsed from each other.
+3. Subtype `a`'s of different types are attracted.
+4. Subtype `b`'s of different types are repulsed.
+5. `Ia` personalities are attracted to their opposite in type and subtype.
+6. `Ib` personalities are repulsed from their opposite in type and subtype.
+
+This gives us the following table of attraction/repulsion interactions for the personality types and subtypes from the right triangular matrix:
+
+```
+      | Ia | Ib | IIa | IIb |
+|-----+----|----|-----|-----|
+|  Ia |  + |  + |  +  |  +  |
+|  Ib |    |  + |  -  |  -  |
+| IIa |    |    |  -  |  -  |
+| IIb |    |    |     |  -  |
+```
+
+Attraction and repulsion between agents are modeled on [Coulomb's law](https://en.wikipedia.org/wiki/Coulomb%27s_law) <sup>[1]</sup>, while combining the effects of multiple agents is modeled with the [center of mass](https://en.wikipedia.org/wiki/Center_of_mass). In our case, instead of a mass we use the inverse square of the distance to the agent in question (this provides the magnitude of the interaction: the closer, the more it has an impact).
+
+
+### Agent Interactions
+
+When any two agents are within an arbitrary (configurable) distance, the degree to which they are attracted or repulsed is based upon the square of the distance between them. As there can be any number of agents within the "distance of effect", we calculate a summed effect of all agents using the same calculations one does to determine the center of mass in two dimensions.
+
+In essence, all attracted agents are identified within the distance of effect, with their x and y coordinates used to determine a central location, replacing all attracting agents with a single representative. The same is done for repulsing agents. For the direction component of the agent velocity vector, the agent in question simply faces the direction of the location of the center of action of the attracting agents. For the magnitude component of the agent velocity vector, the inverse square of the distance is to the center of action is used. For repulsing agents, the center of action is also calculated, but the center is moved to the other side of the agent in question and is then calculated as an attracting agent, using vector addition with the results for the attracting agents.
+
+----
+
+**Section Footnotes**
+
+[1] Originally we'd thought of gravitation as our model for attraction, and just inverting it for repulsion. However, Andreas Sjöstedt recommended using Coulomb's law instead, which was of course an excellent idea, with electrically charged particles providing a more consistent analogy for the personality attraction and repulsion in our model.
+
+
 
 ## HOW TO USE IT
 
@@ -271,7 +321,9 @@ NIL
 
 ## EXTENDING THE MODEL
 
-(suggested things to add or change in the Code tab to make the model more complicated, detailed, accurate, etc.)
+### Different Personality Attraction Models
+
+This model's definition of attraction between types was especially designed to provide balance across all permutations and ensure that at least one type was attracted to another; exploring a model that had a universal repulsor that no agent was attracted to (even those of its own type) would be interesting to explore.
 
 ## NETLOGO FEATURES
 
@@ -283,9 +335,9 @@ NIL
 
 ## HOW TO CITE
 
-If you mention this model in a publication, we ask that you include the citations below.
+If you mention this model in a publication, we ask that you include the citation below.
 
-McGreggor, D. (2019). NetLogo Simple XXX Model. https://github.com/oubiwann/intro-abm/tree/master/project.
+McGreggor, D. (2019). NetLogo Personality, Emotion, and Mood Bearing Agents. https://github.com/oubiwann/intro-abm/tree/master/project.
 
 ## REFERENCES
 
