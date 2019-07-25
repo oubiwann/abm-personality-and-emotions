@@ -2,8 +2,29 @@
 ;;;   Charge Support Procedures   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-to-report summed-charge [xs]
-  ;;
+;; REPL session experimentions ...
+;;
+;; Attracted agent ids:
+;; show [who] of filter-attracted-agents turtle 0
+;; [25 50 42 27 15]
+;;
+;; Inverse square distances for attracted agents:
+;; show map [x -> ([distance turtle x] of turtle 0)^(-2)] [25 50 42 27 15]
+;; [0.020353889040519827 0.14843710347794212 0.02092622987036597
+;;  0.024669067047669954 0.018794516818911148]
+;;
+;; Sum of inverse square distances for attracted agents:
+;; show sum map [x -> (x)^(-2)] [7.0093266363805755 2.5955462048442337
+;;                               6.91280815046164 6.366835620085916
+;;                               7.294313376966194]
+;; 0.233180806255409
+;;
+;; Agent order is random whenever queried, so in order to get centers of charge,
+;; for which we need distances and x/y coords, we need to do it all in one shot.
+;;
+
+to-report summed-charge [distances]
+  sum map [x -> (x)^(-2)] distances
 end
 
 to-report charge-magnitude [xs]
