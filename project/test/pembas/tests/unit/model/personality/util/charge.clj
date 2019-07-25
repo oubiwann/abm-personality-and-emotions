@@ -5,9 +5,10 @@
 
 (def model "PEMBAs-and-Crowds-Personality.nlogo")
 
-; (deftest summed-charge
-;   (let [ws (netlogo/create-workspace model)]
-;     (is (= "xxx" (netlogo/report "summed-charge" ws [1])))))
+(deftest summed-charge
+  (let [ws (netlogo/create-workspace model)]
+    (is (= "0.20011337868480725"
+           (netlogo/report ws "summed-charge" [7 3 7 6 7])))))
 
 ; (deftest charge-magnitude
 ;   (let [ws (netlogo/create-workspace model)]

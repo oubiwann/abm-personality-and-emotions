@@ -24,7 +24,7 @@
 ;;
 
 to-report summed-charge [distances]
-  sum map [x -> (x)^(-2)] distances
+  report sum (map [x -> (x)^(-2)] distances)
 end
 
 to-report charge-magnitude [xs]
