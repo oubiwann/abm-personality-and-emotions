@@ -347,7 +347,7 @@ In order to model attractions between models of similar and dissimilar types, wh
 
 All possible personality type interactions are given by the right triangular matrix:
 
-![Personality interaction matrix](file:resources/images/personality-interaction-matrix.gif)
+![Personality interaction matrix](https://raw.githubusercontent.com/oubiwann/intro-abm/gh-pages/resources/images/personality-interaction-matrix.gif)
 
 with the following rules for attraction/repulsion:
 
