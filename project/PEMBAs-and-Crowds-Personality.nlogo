@@ -384,19 +384,17 @@ In essence, all attracted agents are identified within the distance of effect, w
 
 [1] Originally we'd thought of gravitation as our model for attraction, and just inverting it for repulsion. However, Andreas Sjöstedt recommended using Coulomb's law instead, which was of course an excellent idea, with electrically charged particles providing a more consistent analogy for the personality attraction and repulsion in our model.
 
-
-
 ## HOW TO USE IT
 
-(how to use the model, including a description of each of the items in the Interface tab)
+TBD
 
 ## THINGS TO NOTICE
 
-(suggested things for the user to notice while running the model)
+TBD
 
 ## THINGS TO TRY
 
-(suggested things for the user to try to do (move sliders, switches, etc.) with the model)
+TBD
 
 ## EXTENDING THE MODEL
 
@@ -404,9 +402,12 @@ In essence, all attracted agents are identified within the distance of effect, w
 
 This model's definition of attraction between types was especially designed to provide balance across all permutations and ensure that at least one type was attracted to another; exploring a model that had a universal repulsor that no agent was attracted to (even those of its own type) would be interesting to explore.
 
-## NETLOGO FEATURES
+## NETLOGO ISSUES AND MISSING FUNCTIONS
 
-(interesting or unusual features of NetLogo that the model uses, particularly in the Code tab; or where workarounds were needed for missing features)
+1. This model was developed using Netlogo 6.1, which [has a bug](https://github.com/NetLogo/NetLogo/issues/1763) preventing the `in-radius` function to perform correctly under various circumstances. The Github issue for the bug mentions [another ticket](https://github.com/NetLogo/NetLogo/issues/1756) which provides a workaround for this problem. That workaround was applied in this project (the procedure was named `in-radius2`).
+1. This model uses the `__includes` feature in order to better manage source code in separate files. It was noticed that updates to the separate source files required reloading the model twice via the `File` -> `Recent Files` menu.
+1. While the `histogram` function was very convenient in the development of this model, there were noted absences of other functions, in particular the [frequencies function from Clojure](https://clojuredocs.org/clojure.core/frequencies). This was implemented in Netlogo (as well as a sorted tuples function) for better introspection of data. You may review the functions by viewing the [src/netlogo/util/general.nls](https://github.com/oubiwann/intro-abm/blob/master/project/src/netlogo/util/general.nls) file.
+1. Some basic set theoretic functions were absent from Netlogo, so these were implemented as well (see the same file as above).
 
 ## RELATED MODELS
 
