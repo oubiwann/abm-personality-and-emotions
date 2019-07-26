@@ -33,7 +33,15 @@ PEMBAs: "personality-, emotion-, and mood-bearing agents."
 ## Resources
 
 1. [Project Worksheet](plan.md)
-2. [Project Model](PEMBAs-and-Crowds.nlogo)
+2. Project Models
+   * [Personality](PEMBAs-and-Crowds-Personality.nlogo) (in-progress)
+   * [Emotions](PEMBAs-and-Crowds-Emotions.nlogo) (not started)
+   * [Moods](PEMBAs-and-Crowds-Moods.nlogo) (not started)
+   * [Combined](PEMBAs-and-Crowds.nlogo) (not started)
+3. Papers and articles
+   * [A Model for Personality and Emotion Simulation](https://github.com/hexagram30/agent/blob/master/dev-resources/research/%5B2003%20Egges%5D%20A%20Model%20for%20Personality%20and%20Emotion%20Simulation.pdf)
+   * [Testing Predictions From Personality Neuroscience: Brain Structure and the Big Five](../resources%2Fpapers%2F%5B2010%5D%20DeYoung%20-%20Testing%20Predictions%20From%20Personality%20Neuroscience%20-%20Brain%20Structure%20and%20the%20Big%20Five.pdf)
+   * [Emotional Contagion and Empathy](../resources%2Fpapers%2F%5B2007%5D%20Hatfield%20-%20Emotional%20Contagion%20and%20Empathy.pdf)
 
 ## License
 
