@@ -1,5 +1,7 @@
 language: java
 sudo: required
+git:
+  submodules: false
 build:
   - make travis-build
 script:
