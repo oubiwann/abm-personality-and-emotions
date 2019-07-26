@@ -34,10 +34,10 @@ __includes [
 ;;
 @#$#@#$#@
 GRAPHICS-WINDOW
-216
-24
-1069
-566
+464
+32
+1317
+574
 -1
 -1
 13.0
@@ -61,10 +61,10 @@ ticks
 30.0
 
 BUTTON
-19
-250
-85
-283
+219
+61
+285
+94
 NIL
 setup
 NIL
@@ -78,10 +78,10 @@ NIL
 1
 
 BUTTON
-101
-250
-164
-283
+301
+61
+364
+94
 NIL
 go
 T
@@ -110,10 +110,10 @@ NIL
 HORIZONTAL
 
 TEXTBOX
-20
-27
-170
-49
+21
+22
+171
+44
 Initial Conditions
 18
 0.0
@@ -135,10 +135,10 @@ NIL
 HORIZONTAL
 
 TEXTBOX
-20
-211
-170
-233
+220
+22
+370
+44
 Model Manager
 18
 0.0
@@ -161,30 +161,30 @@ HORIZONTAL
 
 INPUTBOX
 18
-341
+250
 115
-401
+310
 selected-agent
-0.0
+1.0
 1
 0
 Number
 
 TEXTBOX
 19
-305
+214
 169
-327
-Hilight
+236
+Highlight
 18
 0.0
 1
 
 BUTTON
 17
-403
+312
 115
-436
+345
 show relations
 show-relations
 NIL
@@ -199,10 +199,10 @@ NIL
 
 BUTTON
 17
-440
+349
 115
-473
-show attracted
+382
+show +'s
 show-attracted
 NIL
 1
@@ -216,10 +216,10 @@ NIL
 
 BUTTON
 17
-479
+388
 117
-512
-show repulsed
+421
+show -'s
 show-repulsed
 NIL
 1
@@ -233,11 +233,72 @@ NIL
 
 BUTTON
 17
-518
+427
 117
-551
+460
 reset colors
 set-agent-colors
+NIL
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+1
+
+BUTTON
+151
+249
+257
+282
+show + CoM
+NIL
+NIL
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+1
+
+TEXTBOX
+150
+213
+300
+235
+Center of Mass
+18
+0.0
+1
+
+BUTTON
+152
+288
+257
+321
+show - CoM
+NIL
+NIL
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+1
+
+BUTTON
+153
+328
+259
+361
+show combined
+NIL
 NIL
 1
 T
