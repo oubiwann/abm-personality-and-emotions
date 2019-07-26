@@ -41,7 +41,7 @@
 
 (defn info-html
   ([rsrc-rltv-path-to-model]
-    (info-html default-docs-font-size))
+    (info-html rsrc-rltv-path-to-model default-docs-font-size))
   ([rsrc-rltv-path-to-model font-size]
     (md->html (info rsrc-rltv-path-to-model) font-size)))
 
