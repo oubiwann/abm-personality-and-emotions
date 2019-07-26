@@ -145,18 +145,26 @@ ul ul ul {
 <p><strong>Section Footnotes</strong></p>
 <p>[1] Originally we&rsquo;d thought of gravitation as our model for attraction, and just inverting it for repulsion. However, Andreas Sjöstedt recommended using Coulomb&rsquo;s law instead, which was of course an excellent idea, with electrically charged particles providing a more consistent analogy for the personality attraction and repulsion in our model.</p>
 <h2>HOW TO USE IT</h2>
-<p>(how to use the model, including a description of each of the items in the Interface tab)</p>
+<p>TBD</p>
 <h2>THINGS TO NOTICE</h2>
-<p>(suggested things for the user to notice while running the model)</p>
+<p>TBD</p>
 <h2>THINGS TO TRY</h2>
-<p>(suggested things for the user to try to do (move sliders, switches, etc.) with the model)</p>
+<p>TBD</p>
 <h2>EXTENDING THE MODEL</h2>
 <h3>Different Personality Attraction Models</h3>
 <p>This model&rsquo;s definition of attraction between types was especially designed to provide balance across all permutations and ensure that at least one type was attracted to another; exploring a model that had a universal repulsor that no agent was attracted to (even those of its own type) would be interesting to explore.</p>
-<h2>NETLOGO FEATURES</h2>
-<p>(interesting or unusual features of NetLogo that the model uses, particularly in the Code tab; or where workarounds were needed for missing features)</p>
+<h2>NETLOGO ISSUES AND MISSING FUNCTIONS</h2>
+<ol>
+<li>This model was developed using Netlogo 6.1, which <a href="https://github.com/NetLogo/NetLogo/issues/1763">has a bug</a> preventing the <code>in-radius</code> function to perform correctly under various circumstances. The Github issue for the bug mentions <a href="https://github.com/NetLogo/NetLogo/issues/1756">another ticket</a> which provides a workaround for this problem. That workaround was applied in this project (the procedure was named <code>in-radius2</code>).</li>
+<li>This model uses the <code>__includes</code> feature in order to better manage source code in separate files. It was noticed that updates to the separate source files required reloading the model twice via the <code>File</code> -&gt; <code>Recent Files</code> menu.</li>
+<li>While the <code>histogram</code> function was very convenient in the development of this model, there were noted absences of other functions, in particular the <a href="https://clojuredocs.org/clojure.core/frequencies">frequencies function from Clojure</a>. This was implemented in Netlogo (as well as a sorted tuples function) for better introspection of data. You may review the functions by viewing the <a href="https://github.com/oubiwann/intro-abm/blob/master/project/src/netlogo/util/general.nls">src/netlogo/util/general.nls</a> file.</li>
+<li>Some basic set theoretic functions were absent from Netlogo, so these were implemented as well (see the same file as above).</li>
+</ol>
 <h2>RELATED MODELS</h2>
-<p>(models in the NetLogo Models Library and elsewhere which are of related interest)</p>
+<ol>
+<li>Wilensky, U. (1998). NetLogo Flocking model. <a href="http://ccl.northwestern.edu/netlogo/models/Flocking">http://ccl.northwestern.edu/netlogo/models/Flocking</a>. Center for Connected Learning and Computer-Based Modeling, Northwestern University, Evanston, IL.</li>
+<li>Stonedahl, F., Wilensky, U., Rand, W. (2014). NetLogo Heroes and Cowards model. <a href="http://ccl.northwestern.edu/netlogo/models/HeroesandCowards">http://ccl.northwestern.edu/netlogo/models/HeroesandCowards</a>. Center for Connected Learning and Computer-Based Modeling, Northwestern Institute on Complex Systems, Northwestern University, Evanston, IL.</li>
+</ol>
 <h2>HOW TO CITE</h2>
 <p>If you mention this model in a publication, we ask that you include the citation below.</p>
 <p>McGreggor, D. (2019). NetLogo Personality, Emotion, and Mood Bearing Agents. <a href="https://github.com/oubiwann/intro-abm/tree/master/project">https://github.com/oubiwann/intro-abm/tree/master/project</a>.</p>
@@ -165,8 +173,6 @@ ul ul ul {
 <li>Egges, A., Kshirsagar, S., &amp; Magnenat-Thalmann, N. (2003). A Model for Personality and Emotion Simulation. <em>Lecture Notes in Computer Science Knowledge-Based Intelligent Information and Engineering Systems</em>, 453-461. <a href="http://doi.org/10.1007/978-3-540-45224-9_63">http://doi.org/10.1007/978-3-540-45224-9_63</a></li>
 <li>Deyoung, C. G., Hirsh, J. B., Shane, M. S., Papademetris, X., Rajeevan, N., &amp; Gray, J. R. (2010). Testing Predictions From Personality Neuroscience. <em>Psychological Science</em>, 21(6), 820–828. <a href="http://doi.org/10.1177/0956797610370159">http://doi.org/10.1177/0956797610370159</a></li>
 <li>Hatfield, E., Rapson, R. L., &amp; Le, Y. L. (2009). Emotional Contagion and Empathy. <em>The Social Neuroscience of Empathy</em>, 19-30. <a href="http://doi.org/10.7551/mitpress/9780262012973.003.0003">http://doi.org/10.7551/mitpress/9780262012973.003.0003</a></li>
-<li>Wilensky, U. (1998). NetLogo Flocking model. <a href="http://ccl.northwestern.edu/netlogo/models/Flocking">http://ccl.northwestern.edu/netlogo/models/Flocking</a>. Center for Connected Learning and Computer-Based Modeling, Northwestern University, Evanston, IL.</li>
-<li>Stonedahl, F., Wilensky, U., Rand, W. (2014). NetLogo Heroes and Cowards model. <a href="http://ccl.northwestern.edu/netlogo/models/HeroesandCowards">http://ccl.northwestern.edu/netlogo/models/HeroesandCowards</a>. Center for Connected Learning and Computer-Based Modeling, Northwestern Institute on Complex Systems, Northwestern University, Evanston, IL.</li>
 </ol>
 <h2>COPYRIGHT AND LICENSE</h2>
 <p>Copyright © 2019 Duncan McGreggor.</p>
