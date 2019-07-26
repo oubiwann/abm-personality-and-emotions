@@ -2,7 +2,8 @@
 
 *Documentation*
 
-Project:
+Project models' `Info` tab exports:
+
 * [Personality Model](https://oubiwann.github.io/intro-abm/personality.html)
 * [Emotion Model](https://oubiwann.github.io/intro-abm/emotion.html)
 * [Mood Model](https://oubiwann.github.io/intro-abm/mood.html)
