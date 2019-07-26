@@ -6,7 +6,7 @@
 
 (defn save-file
   [model output]
-  (let [data (netlogo/info model)]
+  (let [data (netlogo/info-html model)]
     (spit output data)))
 
 (defn -main

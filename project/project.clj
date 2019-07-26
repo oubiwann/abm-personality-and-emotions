@@ -10,7 +10,7 @@
     [org.clojure/clojure "1.10.1"]
     [org.nlogo/netlogo "6.1.0"]]
   :source-paths ["src/clj"]
-  :resource-paths ["./"]
+  :resource-paths ["./", "resources"]
   :profiles {
     :docs {
       :main pembas.docs}
