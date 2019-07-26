@@ -1,4 +1,11 @@
-# Intro to ABM Project
+# Intro to ABM: Course Project
+
+[![Build Status][travis-badge]][travis]
+[![Clojars Project][clojars-badge]][clojars]
+[![Tag][tag-badge]][tag]
+[![Clojure version][clojure-v]](project/project.clj)
+
+*NetLogo Personality, Emotion, and Mood Bearing Agents*
 
 ## About
 
@@ -9,7 +16,7 @@ focused on what is sometimes called emotional modeling. While this topic has
 numerous practical applications, my interest is simply in building interesting
 interactions and observing any emergent behaviour. If useful, I'd like to
 integrate this into world-building exercises or in generative
-narratives/story creation (with interacting, dynamic characters).
+narratives/story creation (with interactive, dynamic characters).
 
 While this project examines very simple examples of personality, emotion, and
 mood, I am ultimately interested in building much more complex models that make
@@ -27,3 +34,24 @@ PEMBAs: "personality-, emotion-, and mood-bearing agents."
 
 1. [Project Worksheet](plan.md)
 2. [Project Model](PEMBAs-and-Crowds.nlogo)
+
+## License
+
+Copyright © 2019, Duncan McGreggor
+
+Apache License, Version 2.0.
+
+<!-- Named page links below: /-->
+
+[travis]: https://travis-ci.org/oubiwann/intro-abm
+[travis-badge]: https://travis-ci.org/oubiwann/intro-abm.png?branch=master
+[deps]: http://jarkeeper.com/oubiwann/intro-abm
+[deps-badge]: http://jarkeeper.com/oubiwann/intro-abm/status.svg
+[logo]: resources/images/complexity-explorer-logo-x250.jpg
+[logo-large]: resources/images/complexity-explorer-logo-x800.png
+[tag-badge]: https://img.shields.io/github/tag/oubiwann/intro-abm.svg
+[tag]: https://github.com/oubiwann/intro-abm/tags
+[clojure-v]: https://img.shields.io/badge/clojure-1.10.1-blue.svg
+[jdk-v]: https://img.shields.io/badge/jdk-1.11+-blue.svg
+[clojars]: https://clojars.org/pembas
+[clojars-badge]: https://img.shields.io/clojars/v/pembas.svg
