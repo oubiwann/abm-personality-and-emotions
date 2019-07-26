@@ -17,11 +17,30 @@ to-report union [a b]
 end
 
 to-report sort-tuples [tuples]
+  ;; Given a list of tuples, sort the tuples by the first element of each tuple
+  ;; in the list.
+  ;;
+  ;; Example usage:
+  ;;   > sort-tuples [[1 "a"] [0 "b"] [9 "c"]]
+  ;;   [[0 "b"] [1 "a"] [9 "c"]]
+  ;;
+  ;;   > sort-tuples [["c" 1] ["A" 0] ["a" 9]]
+  ;;   [["A" 0] ["a" 9] ["c" 1]]
   report sort-by [ [a b] -> (first a) < (first b)] tuples
 end
 
 to-report frequencies [data]
-	let uniq (remove-duplicates data)
-	report map [datum -> (list datum (length (filter [x -> x = datum] data)))]
-	           uniq
+  ;; Given a list of items, count the occurances of each item, returning tuples
+  ;; of the items and their counts.
+  ;;
+  ;; Example usage:
+  ;;
+  ;;  > frequencies ["a" "b" "b" "c" "a" "c" "c" "b" "c"]
+  ;; [["a" 2] ["b" 3] ["c" 4]]
+  ;;
+  ;;  > frequencies [1 1 2 3 4 2 3 1 4 4 3 4 4]
+  ;;  [[1 3] [2 2] [3 3] [4 5]]
+  let uniq (remove-duplicates data)
+  report map [datum -> (list datum (length (filter [x -> x = datum] data)))]
+             uniq
 end
