@@ -57,9 +57,3 @@ to highlight-relations [agent]
   highlight-attracted agent
   highlight-repulsed agent
 end
-
-to set-agent-colors
-  ask turtles [
-    set color id-to-color personality-id
-  ]
-end

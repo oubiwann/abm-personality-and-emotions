@@ -12,13 +12,13 @@
 
 (deftest id-to-color
   (let [ws (netlogo/create-workspace model)]
-    (is (= netlogo-red
-           (netlogo/report ws "id-to-color" 0)))
     (is (= netlogo-green
-           (netlogo/report ws "id-to-color" 1)))
+           (netlogo/report ws "id-to-color" 0)))
     (is (= netlogo-blue
-           (netlogo/report ws "id-to-color" 2)))
+           (netlogo/report ws "id-to-color" 1)))
     (is (= netlogo-yellow
+           (netlogo/report ws "id-to-color" 2)))
+    (is (= netlogo-red
            (netlogo/report ws "id-to-color" 3)))))
 
 (deftest id-to-name

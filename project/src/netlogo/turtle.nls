@@ -42,3 +42,13 @@ to take-random-step
   rt random 30
   forward 1
 end
+
+to set-turtle-colors
+  ask turtles [
+    set color id-to-color personality-id
+  ]
+end
+
+to-report personality-counts
+  report sort-tuples (frequencies [personality-id] of turtles)
+end

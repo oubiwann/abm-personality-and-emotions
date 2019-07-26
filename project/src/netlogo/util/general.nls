@@ -15,3 +15,13 @@ end
 to-report union [a b]
   report remove-duplicates sentence a b
 end
+
+to-report sort-tuples [tuples]
+  report sort-by [ [a b] -> (first a) < (first b)] tuples
+end
+
+to-report frequencies [data]
+	let uniq (remove-duplicates data)
+	report map [datum -> (list datum (length (filter [x -> x = datum] data)))]
+	           uniq
+end

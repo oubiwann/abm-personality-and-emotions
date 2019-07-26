@@ -23,3 +23,28 @@ to-report filter-repulsed-agents [agent]
   report agent-intersection [personality-neighbors] of agent
                             (repulsed-lookup [personality-id] of agent)
 end
+
+to-report agent-distances [agent agents]
+  let agent-ids [who] of agents
+  report (map [x -> ([distance turtle x] of agent)] agent-ids)
+end
+
+to-report attracted-agent-distances [agent]
+  report agent-distances agent (filter-attracted-agents agent)
+end
+
+to-report repulsed-agent-distances [agent]
+  report agent-distances agent (filter-repulsed-agents agent)
+end
+
+to-report agent-coords [agents]
+  report [(list xcor ycor)] of agents
+end
+
+to-report attracted-agent-coords [agent]
+  report agent-coords (filter-attracted-agents agent)
+end
+
+to-report repulsed-agent-coords [agent]
+  report agent-coords (filter-repulsed-agents agent)
+end

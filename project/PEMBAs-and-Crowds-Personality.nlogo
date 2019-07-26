@@ -128,7 +128,7 @@ interaction-radius
 interaction-radius
 0
 100
-8.0
+12.0
 1
 1
 NIL
@@ -165,7 +165,7 @@ INPUTBOX
 115
 310
 selected-agent
-1.0
+2.0
 1
 0
 Number
@@ -237,7 +237,7 @@ BUTTON
 117
 460
 reset colors
-set-agent-colors
+set-turtle-colors
 NIL
 1
 T
@@ -308,6 +308,24 @@ NIL
 NIL
 NIL
 1
+
+PLOT
+16
+488
+442
+638
+Personality Distribution
+NIL
+NIL
+0.0
+4.0
+0.0
+10.0
+true
+false
+"" ""
+PENS
+"default" 1.0 1 -16777216 true "" "histogram [personality-id] of turtles"
 
 @#$#@#$#@
 ## WHAT IS IT?

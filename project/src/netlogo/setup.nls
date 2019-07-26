@@ -12,7 +12,7 @@ to setup
     ;; We use a personality model of two types and type subtypes, giving us a
     ;; total of four personalities. For details, see the code documentation
     ;; in in `util/personality.nls`.
-    set personality-id random 4
+    set personality-id get-random-personality
     set personality-neighbors nobody
   ]
   set-personalities
@@ -20,7 +20,7 @@ to setup
 end
 
 to set-personalities
-  set-agent-colors
+  set-turtle-colors
   ask turtles [
     set personality-type id-to-name personality-id
   ]
