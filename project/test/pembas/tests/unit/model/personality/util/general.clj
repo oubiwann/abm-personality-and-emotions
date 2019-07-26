@@ -1,7 +1,7 @@
 (ns pembas.tests.unit.model.personality.util.general
   (:require
    [clojure.test :refer :all]
-   [pembas.testing.netlogo :as netlogo])
+   [pembas.netlogo :as netlogo])
   (:refer-clojure :exclude [frequencies]))
 
 (def model "PEMBAs-and-Crowds-Personality.nlogo")

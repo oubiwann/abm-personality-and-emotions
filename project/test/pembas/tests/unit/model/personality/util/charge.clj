@@ -1,7 +1,7 @@
 (ns pembas.tests.unit.model.personality.util.charge
   (:require
    [clojure.test :refer :all]
-   [pembas.testing.netlogo :as netlogo]))
+   [pembas.netlogo :as netlogo]))
 
 (def model "PEMBAs-and-Crowds-Personality.nlogo")
 
