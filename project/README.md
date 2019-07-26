@@ -25,6 +25,16 @@ and moods. This project took a certain amount of inspiration from the 2003
 paper by Egges et al.,
 [A Model for Personality and Emotion Simulation](https://github.com/hexagram30/agent/blob/master/dev-resources/research/%5B2003%20Egges%5D%20A%20Model%20for%20Personality%20and%20Emotion%20Simulation.pdf).
 
+## Documentation
+
+Each model model in this project has had its `Info` tab exported and published
+as documentation viewable on Github:
+
+* [Personality Model](https://oubiwann.github.io/intro-abm/personality.html)
+* [Emotion Model](https://oubiwann.github.io/intro-abm/emotion.html)
+* [Mood Model](https://oubiwann.github.io/intro-abm/mood.html)
+* [Combined Models](https://oubiwann.github.io/intro-abm/combined.html)
+
 ## Naming
 
 The agents in the model explored for this project I have named unimaginatively
