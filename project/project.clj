@@ -10,10 +10,17 @@
     [org.clojure/clojure "1.10.1"]
     [org.nlogo/netlogo "6.1.0"]]
   :source-paths ["src/clj"]
+  :resource-paths ["./"]
   :profiles {
+    :docs {
+      :main pembas.docs}
     :test {
-      :resource-paths ["./"]
       :plugins [
         [lein-ltest "0.3.0"]]}}
   :aliases {
-    "ltest" ["with-profile" "+test" "ltest"]})
+    "ltest" ["with-profile" "+test" "ltest"]
+    "gen-docs" ["do"
+      ["with-profile" "+docs" "run" "PEMBAs-and-Crowds-Personality.nlogo" "../docs/personality.html"]
+      ["with-profile" "+docs" "run" "PEMBAs-and-Crowds-Emotion.nlogo" "../docs/emotion.html"]
+      ["with-profile" "+docs" "run" "PEMBAs-and-Crowds-Mood.nlogo" "../docs/mood.html"]
+      ["with-profile" "+docs" "run" "PEMBAs-and-Crowds.nlogo" "../docs/combined.html"]]})
