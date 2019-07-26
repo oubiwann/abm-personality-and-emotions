@@ -420,8 +420,11 @@ McGreggor, D. (2019). NetLogo Personality, Emotion, and Mood Bearing Agents. htt
 
 ## REFERENCES
 
-1. [Github project](https://github.com/oubiwann/intro-abm).
-1. A Model for Personality and Emotion Simulation, Arjan Egges-Sumedha Kshirsagar-Nadia Magnenat-Thalmann - Lecture Notes in Computer Science Knowledge-Based Intelligent Information and Engineering Systems - 2003
+1. Egges, A., Kshirsagar, S., & Magnenat-Thalmann, N. (2003). A Model for Personality and Emotion Simulation. *Lecture Notes in Computer Science Knowledge-Based Intelligent Information and Engineering Systems*, 453-461. http://doi.org/10.1007/978-3-540-45224-9_63
+1. Deyoung, C. G., Hirsh, J. B., Shane, M. S., Papademetris, X., Rajeevan, N., & Gray, J. R. (2010). Testing Predictions From Personality Neuroscience. *Psychological Science*, 21(6), 820–828. http://doi.org/10.1177/0956797610370159
+1. Hatfield, E., Rapson, R. L., & Le, Y. L. (2009). Emotional Contagion and Empathy. *The Social Neuroscience of Empathy*, 19-30. http://doi.org/10.7551/mitpress/9780262012973.003.0003
+1. Wilensky, U. (1998). NetLogo Flocking model. http://ccl.northwestern.edu/netlogo/models/Flocking. Center for Connected Learning and Computer-Based Modeling, Northwestern University, Evanston, IL.
+1. Stonedahl, F., Wilensky, U., Rand, W. (2014). NetLogo Heroes and Cowards model. http://ccl.northwestern.edu/netlogo/models/HeroesandCowards. Center for Connected Learning and Computer-Based Modeling, Northwestern Institute on Complex Systems, Northwestern University, Evanston, IL.
 
 ## COPYRIGHT AND LICENSE
 

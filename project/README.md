@@ -43,7 +43,7 @@ PEMBAs: "personality-, emotion-, and mood-bearing agents."
 ## Resources
 
 1. [Project Worksheet](plan.md)
-2. Project Models
+2. Project Model Code
    * [Personality](PEMBAs-and-Crowds-Personality.nlogo) (in-progress)
    * [Emotions](PEMBAs-and-Crowds-Emotions.nlogo) (not started)
    * [Moods](PEMBAs-and-Crowds-Moods.nlogo) (not started)
