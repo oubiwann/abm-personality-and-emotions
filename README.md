@@ -1,10 +1,5 @@
 # intro-abm
 
-[![Build Status][travis-badge]][travis]
-[![Clojars Project][clojars-badge]][clojars]
-[![Tag][tag-badge]][tag]
-[![Clojure version][clojure-v]](project/project.clj)
-
 [![][logo]][logo-large]
 
 *Introduction to Agent-Based Modeling*
@@ -17,6 +12,11 @@ This repo holds text, notes, and code created while taking the
 [Introduction to Agent-Based Modeling](https://www.complexityexplorer.org/courses/96-introduction-to-agent-based-modeling/).
 
 ## Project
+
+[![Build Status][travis-badge]][travis]
+[![Clojars Project][clojars-badge]][clojars]
+[![Tag][tag-badge]][tag]
+[![Clojure version][clojure-v]](project/project.clj)
 
 One of the key portions of the course is the development of a model using the
 [NetLogo language](https://ccl.northwestern.edu/netlogo/). Notes and model
