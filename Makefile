@@ -13,8 +13,7 @@ docs:
 	@cd project && lein gen-docs
 	@cd docs && mkdir -p resources/images && \
 	cp -r ../project/resources/images/* resources/images && \
-	git add * && git add resources/images/* && \
-	git commit -am "Regenerated docs." && git push origin gh-pages
+	git checkout gh-pages ; git add * ; git add resources/images/* ; \
+	git commit -am "Regenerated docs." ; git push origin gh-pages
 	@git add docs && git commit docs -m "Regenerated docs."
 	@git push origin master
-
