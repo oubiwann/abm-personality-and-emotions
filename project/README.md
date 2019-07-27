@@ -20,7 +20,7 @@ narratives/story creation (with interactive, dynamic characters).
 
 While this project examines very simple examples of personality, emotion, and
 mood, I am ultimately interested in building much more complex models that make
-use of the OCEAN/Big Fix personality model, and various taxonomies of emotions
+use of the OCEAN/Big Five personality model, and various taxonomies of emotions
 and moods. This project took a certain amount of inspiration from the 2003
 paper by Egges et al.,
 [A Model for Personality and Emotion Simulation](https://github.com/hexagram30/agent/blob/master/dev-resources/research/%5B2003%20Egges%5D%20A%20Model%20for%20Personality%20and%20Emotion%20Simulation.pdf).
