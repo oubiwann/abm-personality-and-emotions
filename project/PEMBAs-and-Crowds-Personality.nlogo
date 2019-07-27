@@ -400,7 +400,7 @@ TBD
 
 ### Different Personality Attraction Models
 
-This model's definition of attraction between types was especially designed to provide balance across all permutations and ensure that at least one type was attracted to another; exploring a model that had a universal repulsor that no agent was attracted to (even those of its own type) would be interesting to explore.
+This model's definition of attraction between types was especially designed to provide balance across all permutations and ensure that at least one type was attracted to another; exploring a model that had a universal repulsor that no agent was attracted to (even those of its own type) would be an interesting exercise.
 
 ## NETLOGO ISSUES AND MISSING FUNCTIONS
 
