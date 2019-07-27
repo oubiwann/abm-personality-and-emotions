@@ -2,7 +2,7 @@
 ;;;   Charge Support Procedures   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; REPL session experimentions ...
+;; REPL session experimentations ...
 ;;
 ;; Attracted agent ids:
 ;; show [who] of filter-attracted-agents turtle 0
