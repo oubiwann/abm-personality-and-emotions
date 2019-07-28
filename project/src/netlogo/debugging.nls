@@ -59,11 +59,11 @@ to highlight-relations [agent]
 end
 
 to show-attracted-center-of-charge
-    let xy attracted-center-of-charge turtle selected-agent
-    ask patch (item 0 xy) (item 1 xy) [ set pcolor 58 ]
+  let xy attracted-center-of-charge turtle selected-agent
+  ask patch (item 0 xy) (item 1 xy) [ set pcolor 58 ]
 end
 
 to show-repulsed-center-of-charge
-    let xy repulsed-center-of-charge turtle selected-agent
-    ask patch (item 0 xy) (item 1 xy) [ set pcolor 18 ]
+  let xy repulsed-center-of-charge turtle selected-agent
+  ask patch (item 0 xy) (item 1 xy) [ set pcolor 18 ]
 end

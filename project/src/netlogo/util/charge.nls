@@ -3,26 +3,26 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 to-report charge [dist]
-    report (dist)^(-2)
+  report (dist)^(-2)
 end
 
 to-report charge-with-k [dist]
-    report (dist)^(-2) * force-multiplier
+  report (dist)^(-2) * force-multiplier
 end
 
 to-report summed-charge [distances]
   report sum (map [x -> (charge x)] distances)
 end
 to-report summed-coords [coords]
-    report reduce [ [acc x-y-ch] -> (list (item 0 acc + item 0 x-y-ch)
-                                          (item 1 acc + item 1 x-y-ch)) ]
-                  coords
+  report reduce [ [acc x-y-ch] -> (list (item 0 acc + item 0 x-y-ch)
+                                        (item 1 acc + item 1 x-y-ch)) ]
+                coords
 end
 
 to-report summed-coords-with-k [augmented-coords]
-    report reduce [ [acc x-y-ch] -> (list (item 0 acc + (item 0 x-y-ch * item 2 x-y-ch))
-                                          (item 1 acc + (item 1 x-y-ch * item 2 x-y-ch))) ]
-                  augmented-coords
+  report reduce [ [acc x-y-ch] -> (list (item 0 acc + (item 0 x-y-ch * item 2 x-y-ch))
+                                        (item 1 acc + (item 1 x-y-ch * item 2 x-y-ch))) ]
+                augmented-coords
 end
 
 to-report center-of-charge [coords]
