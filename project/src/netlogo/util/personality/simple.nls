@@ -191,17 +191,6 @@ end
 ;; of personalities: those with mixed repulsion and attraction tendencies
 ;; represent the normal, while those with very attracting or very repulsing
 ;; tendencies are considered to be one standard deviation from the norm.
-to-report get-random-personality
-  let random-id floor (random-normal personality-norm personality-stdd)
-  if random-id < 0 [set random-id 0]
-  if random-id > 3 [set random-id 3]
-  report random-id
-end
-
-to-report filter-attracted [self-type other-types]
-  report intersection (attracted-lookup self-type) other-types
-end
-
-to-report filter-repulsed [self-type other-types]
-  report intersection (repulsed-lookup self-type) other-types
+to-report get-random-simple-personality
+  report get-random-personality 0 3
 end

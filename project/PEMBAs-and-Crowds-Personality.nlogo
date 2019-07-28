@@ -21,12 +21,13 @@ turtles-own [
 __includes [
   "src/netlogo/agent.nls"
   "src/netlogo/debugging.nls"
-  "src/netlogo/main/personality.nls"
-  "src/netlogo/setup.nls"
+  "src/netlogo/main.nls"
+  "src/netlogo/setup/personality.nls"
   "src/netlogo/turtle.nls"
   "src/netlogo/util/charge.nls"
   "src/netlogo/util/general.nls"
-  "src/netlogo/util/personality.nls"
+  "src/netlogo/util/personality/common.nls"
+  "src/netlogo/util/personality/simple.nls"
   ]
 
 ;; Copyright © 2019 Duncan McGreggor.
@@ -65,8 +66,8 @@ BUTTON
 60
 275
 93
-NIL
 setup
+setup-simple-personality
 NIL
 1
 T
@@ -82,8 +83,8 @@ BUTTON
 60
 360
 93
-NIL
 go
+go-personality
 T
 1
 T

@@ -2,7 +2,7 @@
 ;;;   Setup Procedures   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-to setup
+to setup-simple-personality
   clear-all
   random-seed rand-seed
   set-default-shape turtles "person"
@@ -13,7 +13,7 @@ to setup
     ;; We use a personality model of two types and type subtypes, giving us a
     ;; total of four personalities. For details, see the code documentation
     ;; in in `util/personality.nls`.
-    set personality-id get-random-personality
+    set personality-id get-random-simple-personality
     set personality-neighbors nobody
   ]
   set-personalities
