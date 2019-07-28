@@ -344,8 +344,8 @@ SLIDER
 293
 rand-seed
 rand-seed
--2147483648
-2147483647
+0
+256
 108.0
 1
 1
@@ -360,7 +360,7 @@ SLIDER
 personality-stdd
 personality-stdd
 0
-2
+4
 0.8
 0.01
 1
