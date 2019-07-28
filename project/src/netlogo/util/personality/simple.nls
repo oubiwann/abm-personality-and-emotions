@@ -48,7 +48,7 @@
 ;; * Type I's are attracted to each other
 ;; * Type II's are repulsed from each other
 ;;
-;; By an aribtrary convention, we could assign integers to the different
+;; By an arbitrary convention, we could assign integers to the different
 ;; personality types:
 ;;
 
@@ -148,7 +148,7 @@ end
 ;;  IIa |            -     -
 ;;  IIb |                  -
 ;;
-;; #5 is already caputred, and #6 gives us this:
+;; #5 is already captured, and #6 gives us this:
 ;;
 ;;      | Ia | Ib | IIa | IIb |
 ;; -----+----+----+-----+-----+

@@ -1,0 +1,94 @@
+;;
+;;      | Ia | Ib | IIa | IIb | IIIa | IIIb | IVa | IVb |
+;; -----+----+----+-----+-----+------+------+-----+-----+
+;;   Ia |  +    +    +     +      +      +     +     +
+;;   Ib |       +    +     +      +      +     +     -
+;;  IIa |            +     +      +      +     -     -
+;;  IIb |                  +      +      -     -     -
+;; IIIa |                         -      -     -     -
+;; IIIb |                                -     -     -
+;;  IVa |                                      -     -
+;;  IVb |                                            -
+;;
+;; We can convert that grid to use our integer assignments for the types and
+;; subtypes so that it's easier to read the code in the following attraction/
+;; repulsion procedures:
+;;
+;;      | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 |
+;; -----+---+---+---+---+---+---+---+---+
+;;   0 |  +   +   +   +   +   +   +   +
+;;   1 |      +   +   +   +   +   +   -
+;;   2 |          +   +   +   -   -   -
+;;   3 |              +   -   -   -   -
+;;   4 |                  -   -   -   -
+;;   5 |                      -   -   -
+;;   6 |                          -   -
+;;   7 |                              -
+;;
+
+to-report id-to-name [type-id]
+  if type-id = 0 [ report "Ia" ]
+  if type-id = 1 [ report "Ib" ]
+  if type-id = 2 [ report "IIa" ]
+  if type-id = 3 [ report "IIb" ]
+  if type-id = 4 [ report "IIIa" ]
+  if type-id = 5 [ report "IIIb" ]
+  if type-id = 6 [ report "IVa" ]
+  if type-id = 7 [ report "IVb" ]
+end
+
+to-report name-to-id [type-name]
+  if type-name = "Ia" [ report 0 ]
+  if type-name = "Ib" [ report 1 ]
+  if type-name = "IIa" [ report 2 ]
+  if type-name = "IIb" [ report 3 ]
+  if type-name = "IIIa" [ report 4 ]
+  if type-name = "IIIb" [ report 5 ]
+  if type-name = "IVa" [ report 6 ]
+  if type-name = "IVb" [ report 7 ]
+end
+
+;; Arbitrary color assignmentn to personality types:
+to-report id-to-color [type-id]
+  if type-id = 0 [ report green ]
+  if type-id = 1 [ report turquoise ]
+  if type-id = 2 [ report cyan ]
+  if type-id = 3 [ report blue ]
+  if type-id = 4 [ report yellow ]
+  if type-id = 5 [ report orange ]
+  if type-id = 6 [ report red ]
+  if type-id = 7 [ report pink ]
+end
+
+to-report attracted-lookup [self-type]
+  if self-type = 0 [ report [0 1 2 3 4 5 6 7] ]
+  if self-type = 1 [ report [0 1 2 3 4 5 6] ]
+  if self-type = 2 [ report [0 1 2 3 4] ]
+  if self-type = 3 [ report [0 1 2 3] ]
+  if self-type = 4 [ report [0 1 2] ]
+  if self-type = 5 [ report [0 1] ]
+  if self-type = 6 [ report [0 1] ]
+  if self-type = 7 [ report [0] ]
+  report word "Unknown type: " self-type
+end
+
+to-report repulsed-lookup [self-type]
+  if self-type = 0 [ report [] ]
+  if self-type = 1 [ report [7] ]
+  if self-type = 2 [ report [5 6 7] ]
+  if self-type = 3 [ report [4 5 6 7] ]
+  if self-type = 4 [ report [3 4 5 6 7] ]
+  if self-type = 5 [ report [3 4 5 6 7] ]
+  if self-type = 6 [ report [2 3 4 5 6 7] ]
+  if self-type = 7 [ report [1 2 3 4 5 6 7] ]
+  report word "Unknown type: " self-type
+end
+
+;; Instead of an evenly distributed random population of personalities,
+;; we've created a function that is used to generate a normal distribution
+;; of personalities: those with mixed repulsion and attraction tendencies
+;; represent the normal, while those with very attracting or very repulsing
+;; tendencies are considered to be one standard deviation from the norm.
+to-report get-random-complex-personality
+  report get-random-personality 0 7
+end

@@ -22,12 +22,12 @@ __includes [
   "src/netlogo/agent.nls"
   "src/netlogo/debugging.nls"
   "src/netlogo/main.nls"
-  "src/netlogo/setup/personality/simple.nls"
+  "src/netlogo/setup/personality/complex.nls"
   "src/netlogo/turtle.nls"
   "src/netlogo/util/charge.nls"
   "src/netlogo/util/general.nls"
   "src/netlogo/util/personality/common.nls"
-  "src/netlogo/util/personality/simple.nls"
+  "src/netlogo/util/personality/complex.nls"
   ]
 
 ;; Copyright © 2019 Duncan McGreggor.
@@ -48,15 +48,15 @@ GRAPHICS-WINDOW
 1
 1
 0
-0
-0
+1
+1
 1
 -28
 28
 -16
 16
-1
-1
+0
+0
 1
 ticks
 30.0
@@ -104,7 +104,7 @@ agent-count
 agent-count
 4
 1000
-55.0
+1000.0
 1
 1
 NIL
@@ -319,7 +319,7 @@ Personality Distribution
 NIL
 NIL
 0.0
-4.0
+8.0
 0.0
 10.0
 true
@@ -347,7 +347,7 @@ rand-seed
 rand-seed
 0
 256
-108.0
+0.0
 1
 1
 NIL
@@ -361,8 +361,8 @@ SLIDER
 personality-stdd
 personality-stdd
 0
-4
-0.8
+8
+1.6
 0.01
 1
 NIL
@@ -376,8 +376,8 @@ SLIDER
 personality-norm
 personality-norm
 0
-4
-2.1
+8
+4.0
 0.01
 1
 NIL

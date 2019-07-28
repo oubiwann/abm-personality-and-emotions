@@ -2,6 +2,13 @@
 ;;;   Turtle Procedures   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+to set-personalities
+  set-turtle-colors
+  ask turtles [
+    set personality-type id-to-name personality-id
+  ]
+end
+
 to move-personality-agents
   find-neighbors
   ifelse any? personality-neighbors
