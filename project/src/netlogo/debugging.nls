@@ -4,32 +4,32 @@
 
 to show-attracted
   let agent turtle selected-agent
-  all-blue
-  agent-yellow agent
+  set-all-blue
+  set-yellow agent
   highlight-attracted agent
 end
 
 to show-repulsed
   let agent turtle selected-agent
-  all-blue
-  agent-yellow agent
+  set-all-blue
+  set-yellow agent
   highlight-repulsed agent
 end
 
 to show-relations
   let agent turtle selected-agent
-  all-blue
-  agent-yellow agent
+  set-all-blue
+  set-yellow agent
   highlight-relations agent
 end
 
-to agent-yellow [agent]
+to set-yellow [agent]
   ask agent [
     set color yellow
     ]
 end
 
-to all-blue
+to set-all-blue
   ask turtles [
     set color blue
   ]
