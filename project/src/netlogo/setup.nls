@@ -4,6 +4,7 @@
 
 to setup
   clear-all
+  random-seed rand-seed
   set-default-shape turtles "circle"
   ;; agent-count is the total number of personality agents in the model; it is
   ;; a global variable set via a slider in the GUI

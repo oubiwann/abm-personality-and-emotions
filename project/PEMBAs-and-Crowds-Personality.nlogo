@@ -34,10 +34,10 @@ __includes [
 ;;
 @#$#@#$#@
 GRAPHICS-WINDOW
-455
-23
-1306
-639
+370
+25
+1221
+522
 -1
 -1
 14.805
@@ -52,8 +52,8 @@ GRAPHICS-WINDOW
 1
 -28
 28
--20
-20
+-16
+16
 1
 1
 1
@@ -61,10 +61,10 @@ ticks
 30.0
 
 BUTTON
-219
-61
-285
-94
+195
+60
+275
+93
 NIL
 setup
 NIL
@@ -78,10 +78,10 @@ NIL
 1
 
 BUTTON
-301
-61
-364
-94
+280
+60
+360
+93
 NIL
 go
 T
@@ -95,10 +95,10 @@ NIL
 0
 
 SLIDER
-19
-63
-191
-96
+20
+60
+185
+93
 agent-count
 agent-count
 4
@@ -120,10 +120,10 @@ Initial Conditions
 1
 
 SLIDER
-18
-109
-190
-142
+20
+100
+185
+133
 interaction-radius
 interaction-radius
 0
@@ -135,9 +135,9 @@ NIL
 HORIZONTAL
 
 TEXTBOX
-220
+195
 22
-370
+345
 44
 Model Manager
 18
@@ -145,10 +145,10 @@ Model Manager
 1
 
 SLIDER
-18
-156
-190
-189
+20
+140
+185
+173
 force-multiplier
 force-multiplier
 0.01
@@ -160,31 +160,31 @@ NIL
 HORIZONTAL
 
 INPUTBOX
-18
-250
-115
-310
+20
+260
+117
+320
 selected-agent
-0.0
+1.0
 1
 0
 Number
 
 TEXTBOX
-19
-214
-169
-236
+20
+225
+170
+247
 Highlight
 18
 0.0
 1
 
 BUTTON
-17
-312
-115
-345
+20
+360
+118
+393
 show relations
 show-relations
 NIL
@@ -198,10 +198,10 @@ NIL
 0
 
 BUTTON
-17
-349
-115
-382
+20
+400
+120
+433
 show +'s
 show-attracted
 NIL
@@ -215,10 +215,10 @@ NIL
 0
 
 BUTTON
-17
-388
-117
-421
+20
+440
+120
+473
 show -'s
 show-repulsed
 NIL
@@ -232,10 +232,10 @@ NIL
 0
 
 BUTTON
-17
-427
-117
-460
+20
+480
+120
+513
 reset colors
 set-turtle-colors
 NIL
@@ -249,10 +249,10 @@ NIL
 0
 
 BUTTON
-151
-249
-268
-282
+125
+360
+225
+393
 show +center
 show-attracted-center-of-charge
 NIL
@@ -266,20 +266,20 @@ NIL
 0
 
 TEXTBOX
-150
-213
-300
-235
+125
+330
+250
+351
 Center of Charge
-18
+14
 0.0
 1
 
 BUTTON
-152
-288
-268
-321
+125
+400
+225
+433
 show -center
 show-repulsed-center-of-charge
 NIL
@@ -293,10 +293,10 @@ NIL
 0
 
 BUTTON
-153
-328
-269
-361
+125
+440
+225
+473
 show combined
 NIL
 NIL
@@ -310,10 +310,10 @@ NIL
 0
 
 PLOT
-16
-488
-442
-638
+195
+100
+360
+220
 Personality Distribution
 NIL
 NIL
@@ -326,6 +326,31 @@ false
 "" ""
 PENS
 "default" 1.0 1 -16777216 true "" "histogram [personality-id] of turtles"
+
+TEXTBOX
+20
+330
+170
+348
+Relations
+14
+0.0
+1
+
+SLIDER
+20
+180
+185
+213
+rand-seed
+rand-seed
+-2147483648
+2147483647
+108.0
+1
+1
+NIL
+HORIZONTAL
 
 @#$#@#$#@
 ## WHAT IS IT?
@@ -764,5 +789,5 @@ true
 Line -7500403 true 150 150 90 180
 Line -7500403 true 150 150 210 180
 @#$#@#$#@
-0
+1
 @#$#@#$#@

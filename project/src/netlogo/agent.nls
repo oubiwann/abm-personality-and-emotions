@@ -71,7 +71,8 @@ end
 
 to-report attracted-center-of-charge [agent]
     let agents (filter-attracted-agents agent)
-    if agents = nobody [
+    print agents
+    if agents = nobody or not any? agents [
         report agent-coords agent
     ]
     report center-of-charge (agent-augmented-coords
@@ -81,7 +82,7 @@ end
 
 to-report repulsed-center-of-charge [agent]
     let agents (filter-repulsed-agents agent)
-    if agents = nobody [
+    if agents = nobody or not any? agents [
         report agent-coords agent
     ]
     report center-of-charge (agent-augmented-coords
@@ -91,7 +92,7 @@ end
 
 to-report attracted-center-of-charge-with-k [agent]
     let agents (filter-attracted-agents agent)
-    if agents = nobody [
+    if agents = nobody or not any? agents [
         report agent-coords agent
     ]
     report center-of-charge-with-k (agent-augmented-coords-with-k
@@ -101,7 +102,7 @@ end
 
 to-report repulsed-center-of-charge-with-k [agent]
     let agents (filter-repulsed-agents agent)
-    if agents = nobody [
+    if agents = nobody or not any? agents [
         report agent-coords agent
     ]
     report center-of-charge-with-k (agent-augmented-coords-with-k
