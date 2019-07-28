@@ -31,8 +31,8 @@ Each model model in this project has had its `Info` tab exported and published
 as documentation viewable on Github:
 
 * Personality Model
-		* [Simple](https://oubiwann.github.io/intro-abm/personality.html)
-		* [Complex](https://oubiwann.github.io/intro-abm/personality-complex.html)
+    * [Simple](https://oubiwann.github.io/intro-abm/personality.html)
+    * [Complex](https://oubiwann.github.io/intro-abm/personality-complex.html)
 * [Emotion Model](https://oubiwann.github.io/intro-abm/emotion.html)
 * [Mood Model](https://oubiwann.github.io/intro-abm/mood.html)
 * [Combined Models](https://oubiwann.github.io/intro-abm/combined.html)
@@ -46,7 +46,9 @@ PEMBAs: "personality-, emotion-, and mood-bearing agents."
 
 1. [Project Worksheet](plan.md)
 2. Project Model Code
-   * [Personality](PEMBAs-and-Crowds-Personality.nlogo) (in-progress)
+   * Personality
+      * [Simple](PEMBAs-and-Crowds-Personality.nlogo) (in-progress)
+      * [Complex](PEMBAs-and-Crowds-Personality-Complexity.nlogo) (in-progress)
    * [Emotions](PEMBAs-and-Crowds-Emotions.nlogo) (not started)
    * [Moods](PEMBAs-and-Crowds-Moods.nlogo) (not started)
    * [Combined](PEMBAs-and-Crowds.nlogo) (not started)
