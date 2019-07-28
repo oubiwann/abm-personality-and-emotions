@@ -25,3 +25,12 @@
   (let [ws (netlogo/create-workspace model)]
     (is (= "[[a 3] [b 2] [c 1] [d 1]]"
            (netlogo/report ws "frequencies" ["a" "b" "a" "a" "c" "b" "d"])))))
+
+(deftest flip-point
+  (let [ws (netlogo/create-workspace model)]
+    (is (= "[1 1]"
+           (netlogo/report ws "flip-point" [-1 -1] [0 0])))
+    (is (= "[3 3]"
+           (netlogo/report ws "flip-point" [-1 -1] [1 1])))
+    (is (= "[4 -5]"
+           (netlogo/report ws "flip-point" [-2 3] [1 -1])))))

@@ -44,3 +44,12 @@ to-report frequencies [data]
   report map [datum -> (list datum (length (filter [x -> x = datum] data)))]
              uniq
 end
+
+to-report flip-point [start-xy center-xy]
+  ;; This is for converting a repulsive from to an attractive one, after
+  ;; rotating it around the agent by 180 degrees.
+  let center-x (item 0 center-xy)
+  let center-y (item 1 center-xy)
+  report (list (center-x - ((item 0 start-xy) - center-x))
+               (center-y - ((item 1 start-xy) - center-y)))
+end
