@@ -192,7 +192,7 @@ end
 ;; represent the normal, while those with very attracting or very repulsing
 ;; tendencies are considered to be one standard deviation from the norm.
 to-report get-random-personality
-  let random-id floor (random-normal 2.1 0.8)
+  let random-id floor (random-normal personality-norm personality-stdd)
   if random-id < 0 [set random-id 0]
   if random-id > 3 [set random-id 3]
   report random-id
