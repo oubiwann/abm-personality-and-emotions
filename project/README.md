@@ -30,7 +30,9 @@ paper by Egges et al.,
 Each model model in this project has had its `Info` tab exported and published
 as documentation viewable on Github:
 
-* [Personality Model](https://oubiwann.github.io/intro-abm/personality.html)
+* Personality Model
+		* [Simple](https://oubiwann.github.io/intro-abm/personality.html)
+		* [Complex](https://oubiwann.github.io/intro-abm/personality-complex.html)
 * [Emotion Model](https://oubiwann.github.io/intro-abm/emotion.html)
 * [Mood Model](https://oubiwann.github.io/intro-abm/mood.html)
 * [Combined Models](https://oubiwann.github.io/intro-abm/combined.html)

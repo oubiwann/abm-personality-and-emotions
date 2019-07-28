@@ -21,6 +21,7 @@
     "ltest" ["with-profile" "+test" "ltest"]
     "gen-docs" ["do"
       ["with-profile" "+docs" "run" "PEMBAs-and-Crowds-Personality.nlogo" "../docs/personality.html"]
+      ["with-profile" "+docs" "run" "PEMBAs-and-Crowds-Personality-Complex.nlogo" "../docs/personality-complex.html"]
       ["with-profile" "+docs" "run" "PEMBAs-and-Crowds-Emotion.nlogo" "../docs/emotion.html"]
       ["with-profile" "+docs" "run" "PEMBAs-and-Crowds-Mood.nlogo" "../docs/mood.html"]
       ["with-profile" "+docs" "run" "PEMBAs-and-Crowds.nlogo" "../docs/combined.html"]]})
