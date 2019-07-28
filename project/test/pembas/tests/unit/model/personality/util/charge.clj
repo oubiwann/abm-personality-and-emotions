@@ -19,13 +19,39 @@
     (is (= "0.20011337868480725"
            (netlogo/report ws "summed-charge" [7 3 7 6 7])))))
 
-; (deftest charge-magnitude
-;   (let [ws (netlogo/create-workspace model)]
-;     (is (= "xxx" (netlogo/report "charge-magnitude" ws [1])))))
+(deftest summed-coords
+  (let [ws (netlogo/create-workspace model)]
+    (is (= "[0 0]"
+        (netlogo/report ws "summed-coords" [[0 0]])))
+    (is (= "[1 1]"
+        (netlogo/report ws "summed-coords" [[1 1]])))
+    (is (= "[-1 -1]"
+        (netlogo/report ws "summed-coords" [[-1 -1]])))
+    (is (= "[1 1]"
+        (netlogo/report ws "summed-coords" [[0 0] [1 1]])))
+    (is (= "[0 0]"
+        (netlogo/report ws "summed-coords" [[-1 -1] [1 1]])))
+    (is (= "[3 3]"
+        (netlogo/report ws "summed-coords" [[0 0] [1 1] [2 2]])))
+    (is (= "[9 12]"
+        (netlogo/report ws "summed-coords" [[1 2] [3 4] [5 6]])))))
 
-; (deftest center-of-charge
-;   (let [ws (netlogo/create-workspace model)]
-;     (is (= "xxx" (netlogo/report "center-of-charge" ws [1] [2])))))
+(deftest center-of-charge
+  (let [ws (netlogo/create-workspace model)]
+    (is (= "[0 0]"
+        (netlogo/report ws "center-of-charge" [[0 0]])))
+    (is (= "[1 1]"
+        (netlogo/report ws "center-of-charge" [[1 1]])))
+    (is (= "[-1 -1]"
+        (netlogo/report ws "center-of-charge" [[-1 -1]])))
+    (is (= "[0.5 0.5]"
+        (netlogo/report ws "center-of-charge" [[0 0] [1 1]])))
+    (is (= "[0 0]"
+        (netlogo/report ws "center-of-charge" [[-1 -1] [1 1]])))
+    (is (= "[1 1]"
+        (netlogo/report ws "center-of-charge" [[0 0] [1 1] [2 2]])))
+    (is (= "[3 4]"
+        (netlogo/report ws "center-of-charge" [[1 2] [3 4] [5 6]])))))
 
 ; (deftest sum-forces
 ;   (let [ws (netlogo/create-workspace model)]

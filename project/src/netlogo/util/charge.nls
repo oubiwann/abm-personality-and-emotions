@@ -2,36 +2,6 @@
 ;;;   Charge Support Procedures   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; REPL session experimentations ...
-;;
-;; Attracted agent ids:
-;; show [who] of filter-attracted-agents turtle 0
-;; [25 50 42 27 15]
-;;
-;; Inverse square distances for attracted agents:
-;; show map [x -> ([distance turtle x] of turtle 0)^(-2)] [25 50 42 27 15]
-;; [0.020353889040519827 0.14843710347794212 0.02092622987036597
-;;  0.024669067047669954 0.018794516818911148]
-;;
-;; Sum of inverse square distances for attracted agents:
-;; show sum map [x -> (x)^(-2)] [7.0093266363805755 2.5955462048442337
-;;                               6.91280815046164 6.366835620085916
-;;                               7.294313376966194]
-;; 0.233180806255409
-;;
-;; Agent order is random whenever queried, so in order to get centers of charge,
-;; for which we need distances and x/y coords, we need to do it all in one shot.
-;;
-;; (reduce [ [acc xy] -> (list (first acc + first xy) (item 1 acc + item 1 xy)) ]
-;;         attracted-agent-coords turtle 2)
-;;
-;; let coords (attracted-agent-coords turtle 2)
-;; (map [ x -> x / (length coords) ]
-;;      (reduce [ [acc xy] -> (list (first acc + first xy) (item 1 acc + item 1 xy)) ]
-;;                coords))
-;;
-;; center-of-charge (agent-augmented-coords-with-k turtle 0 (filter-attracted-agents turtle 0))
-
 to-report charge [dist]
     report (dist)^(-2)
 end
@@ -43,12 +13,6 @@ end
 to-report summed-charge [distances]
   report sum (map [x -> (charge x)] distances)
 end
-
-to-report charge-magnitude [xs]
-  ;; The magnitude of an attractive or repuslive "charge" is given by
-  ;; the inverse square of the distance from the agent in question
-end
-
 to-report summed-coords [coords]
     report reduce [ [acc x-y-ch] -> (list (item 0 acc + item 0 x-y-ch)
                                           (item 1 acc + item 1 x-y-ch)) ]
