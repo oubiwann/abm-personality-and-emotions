@@ -71,7 +71,6 @@ end
 
 to-report attracted-center-of-charge [agent]
   let agents (filter-attracted-agents agent)
-  print agents
   if agents = nobody or not any? agents [
     report agent-coords agent
   ]
@@ -108,4 +107,11 @@ to-report repulsed-center-of-charge-with-k [agent]
   report center-of-charge-with-k (agent-augmented-coords-with-k
                                   agent
                                   agents)
+end
+
+to-report summed-center-of-charge [agent]
+  let attracted-coords attracted-center-of-charge agent
+  let repulsed-coords repulsed-center-of-charge agent
+  let adj-repulsed-coords flip-point repulsed-coords agent-coords agent
+  report center-of-charge (list attracted-coords adj-repulsed-coords)
 end

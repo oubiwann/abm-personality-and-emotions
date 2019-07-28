@@ -298,7 +298,7 @@ BUTTON
 225
 553
 show combined
-NIL
+show-combined-center-of-charge
 NIL
 1
 T

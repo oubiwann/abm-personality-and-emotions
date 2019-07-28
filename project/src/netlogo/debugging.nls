@@ -67,3 +67,8 @@ to show-repulsed-center-of-charge
   let xy repulsed-center-of-charge turtle selected-agent
   ask patch (item 0 xy) (item 1 xy) [ set pcolor 18 ]
 end
+
+to show-combined-center-of-charge
+  let xy summed-center-of-charge turtle selected-agent
+  ask patch (item 0 xy) (item 1 xy) [ set pcolor white ]
+end

@@ -17,7 +17,9 @@ to find-neighbors
 end
 
 to take-interaction-step
-  ;; TBD
+  let coords summed-center-of-charge self
+  facexy (item 0 coords) (item 1 coords)
+  forward 1
 end
 
 to-report interaction-force
