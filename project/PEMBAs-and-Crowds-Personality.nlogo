@@ -34,13 +34,13 @@ __includes [
 ;;
 @#$#@#$#@
 GRAPHICS-WINDOW
-464
-32
-1317
-574
+455
+23
+1306
+639
 -1
 -1
-13.0
+14.805
 1
 10
 1
@@ -50,8 +50,8 @@ GRAPHICS-WINDOW
 0
 0
 1
--32
-32
+-28
+28
 -20
 20
 1
@@ -151,9 +151,9 @@ SLIDER
 189
 force-multiplier
 force-multiplier
-0
-1
-0.5
+0.01
+100
+1.0
 0.01
 1
 NIL
@@ -165,7 +165,7 @@ INPUTBOX
 115
 310
 selected-agent
-2.0
+0.0
 1
 0
 Number
@@ -195,7 +195,7 @@ NIL
 NIL
 NIL
 NIL
-1
+0
 
 BUTTON
 17
@@ -212,7 +212,7 @@ NIL
 NIL
 NIL
 NIL
-1
+0
 
 BUTTON
 17
@@ -229,7 +229,7 @@ NIL
 NIL
 NIL
 NIL
-1
+0
 
 BUTTON
 17
@@ -246,15 +246,15 @@ NIL
 NIL
 NIL
 NIL
-1
+0
 
 BUTTON
 151
 249
-257
+268
 282
-show + CoM
-NIL
+show +center
+show-attracted-center-of-charge
 NIL
 1
 T
@@ -263,14 +263,14 @@ NIL
 NIL
 NIL
 NIL
-1
+0
 
 TEXTBOX
 150
 213
 300
 235
-Center of Mass
+Center of Charge
 18
 0.0
 1
@@ -278,10 +278,10 @@ Center of Mass
 BUTTON
 152
 288
-257
+268
 321
-show - CoM
-NIL
+show -center
+show-repulsed-center-of-charge
 NIL
 1
 T
@@ -290,12 +290,12 @@ NIL
 NIL
 NIL
 NIL
-1
+0
 
 BUTTON
 153
 328
-259
+269
 361
 show combined
 NIL
@@ -307,7 +307,7 @@ NIL
 NIL
 NIL
 NIL
-1
+0
 
 PLOT
 16

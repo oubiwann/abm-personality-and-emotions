@@ -22,9 +22,26 @@
 ;; Agent order is random whenever queried, so in order to get centers of charge,
 ;; for which we need distances and x/y coords, we need to do it all in one shot.
 ;;
+;; (reduce [ [acc xy] -> (list (first acc + first xy) (item 1 acc + item 1 xy)) ]
+;;         attracted-agent-coords turtle 2)
+;;
+;; let coords (attracted-agent-coords turtle 2)
+;; (map [ x -> x / (length coords) ]
+;;      (reduce [ [acc xy] -> (list (first acc + first xy) (item 1 acc + item 1 xy)) ]
+;;                coords))
+;;
+;; center-of-charge (agent-augmented-coords-with-k turtle 0 (filter-attracted-agents turtle 0))
+
+to-report charge [dist]
+    report (dist)^(-2)
+end
+
+to-report charge-with-k [dist]
+    report (dist)^(-2) * force-multiplier
+end
 
 to-report summed-charge [distances]
-  report sum (map [x -> (x)^(-2)] distances)
+  report sum (map [x -> (charge x)] distances)
 end
 
 to-report charge-magnitude [xs]
@@ -32,7 +49,24 @@ to-report charge-magnitude [xs]
   ;; the inverse square of the distance from the agent in question
 end
 
-to-report center-of-charge [xs ys]
+to-report summed-coords [coords]
+    report reduce [ [acc x-y-ch] -> (list (item 0 acc + item 0 x-y-ch)
+                                          (item 1 acc + item 1 x-y-ch)) ]
+                  coords
+end
+
+to-report summed-coords-with-k [augmented-coords]
+    report reduce [ [acc x-y-ch] -> (list (item 0 acc + (item 0 x-y-ch * item 2 x-y-ch))
+                                          (item 1 acc + (item 1 x-y-ch * item 2 x-y-ch))) ]
+                  augmented-coords
+end
+
+to-report center-of-charge [coords]
+  report map [ coord -> coord / (length coords) ]
+             (summed-coords coords)
+end
+
+to-report center-of-charge-with-k [augmented-coords]
   ;; The "center of charge" is given by the x and y components of the nearby
   ;; personalities times their associated charge magnitudes, then divided by the
   ;; sums of their magnitudes. This is analogous to center of mass calcualtions
@@ -45,6 +79,9 @@ to-report center-of-charge [xs ys]
   ;; 3) Sum the magnitudes and divide the results of the previous step by this
   ;; 4) Do steps 2 & 3 for ycoords; the combination of these two results
   ;;    represents the x,y coord of the "center of charge".
+  let summed-ch sum map [ x-y-ch -> (item 2 x-y-ch) ] augmented-coords
+  report map [ coord -> coord / summed-ch ]
+             (summed-coords-with-k augmented-coords)
 end
 
 to-report sum-forces [xs ys]

@@ -44,6 +44,9 @@ to take-random-step
 end
 
 to set-turtle-colors
+  ask patches [
+    set pcolor black
+  ]
   ask turtles [
     set color id-to-color personality-id
   ]
