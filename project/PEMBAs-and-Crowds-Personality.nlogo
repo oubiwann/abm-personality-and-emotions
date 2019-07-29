@@ -481,6 +481,9 @@ McGreggor, D. (2019). NetLogo Personality, Emotion, and Mood Bearing Agents. htt
 1. Egges, A., Kshirsagar, S., & Magnenat-Thalmann, N. (2003). A Model for Personality and Emotion Simulation. *Lecture Notes in Computer Science Knowledge-Based Intelligent Information and Engineering Systems*, 453-461. http://doi.org/10.1007/978-3-540-45224-9_63
 1. Deyoung, C. G., Hirsh, J. B., Shane, M. S., Papademetris, X., Rajeevan, N., & Gray, J. R. (2010). Testing Predictions From Personality Neuroscience. *Psychological Science*, 21(6), 820–828. http://doi.org/10.1177/0956797610370159
 1. Hatfield, E., Rapson, R. L., & Le, Y. L. (2009). Emotional Contagion and Empathy. *The Social Neuroscience of Empathy*, 19-30. http://doi.org/10.7551/mitpress/9780262012973.003.0003
+1. Deyoung, C. G., & Gray, J. R. (n.d.). Personality neuroscience: Explaining individual differences in affect, behaviour and cognition. *The Cambridge Handbook of Personality Psychology*, 323-346. http://doi.org/10.1017/cbo9780511596544.023
+1. Gerlach, M., Farb, B., Revelle, W., & Amaral, L. A. (2018). A robust data-driven approach identifies four personality types across four large data sets. *Nature Human Behaviour*, 2(10), 735-742. http://doi.org/10.1038/s41562-018-0419-z
+1. Mulders, P., Llera, A., Tendolkar, I., Eijndhoven, P. V., & Beckmann, C. (2018). Personality Profiles Are Associated with Functional Brain Networks Related to Cognition and Emotion. *Scientific Reports*, 8(1). http://doi.org/10.1038/s41598-018-32248-x
 
 ## COPYRIGHT AND LICENSE
 
