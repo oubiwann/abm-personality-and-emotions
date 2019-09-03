@@ -1,0 +1,41 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;   Visual Debugging Procedures   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+to highlight-attracted [agent]
+  ; let attracted-agents filter-attracted-emotion-agents agent
+  ; if attracted-agents != nobody [
+  ;   ask attracted-agents [
+  ;     set color green
+  ;   ]
+  ;]
+end
+
+to highlight-repulsed [agent]
+;   let repulsed-agents filter-repulsed-emotion-agents agent
+;   if repulsed-agents != nobody [
+;     ask repulsed-agents [
+;       set color red
+;     ]
+;   ]
+end
+
+to highlight-relations [agent]
+;   highlight-attracted agent
+;   highlight-repulsed agent
+end
+
+to show-attracted-center-of-charge
+;   let xy attracted-emotion-center-of-charge turtle selected-agent
+;   ask patch (x-patch xy) (y-patch xy) [ set pcolor 58 ]
+end
+
+to show-repulsed-center-of-charge
+;   let xy repulsed-emotion-center-of-charge turtle selected-agent
+;   ask patch (x-patch xy) (y-patch xy) [ set pcolor 18 ]
+end
+
+to show-combined-center-of-charge
+;   let xy summed-emotion-center-of-charge turtle selected-agent
+;   ask patch (x-patch xy) (y-patch xy) [ set pcolor white ]
+end

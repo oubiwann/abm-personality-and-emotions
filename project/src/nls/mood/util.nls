@@ -1,0 +1,20 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;   Mood Support Procedures   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; Our mood model is very simple: any given mood is a value on a spectrum of
+;; floating point values in a normal distribution with values less than zero
+;; arbitrarily used to describe moods of negative quality, and values greater
+;; than zero used to describe moods of positive quality.
+;;
+to-report get-random-mood []
+  report random-normal mood-norm mood-stdd
+end
+
+to-report min-mood []
+  report min [mood-value] of turtles
+end
+
+to-report max-mood []
+  report max [mood-value] of turtles
+end

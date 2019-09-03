@@ -1,0 +1,48 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;   Turtle Emotion Procedures   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+to set-moods
+  set-mood-turtle-colors
+end
+
+; to move-emotion-agents
+;   find-emotion-neighbors
+;   ifelse any? emotion-neighbors
+;     [ take-emotion-interaction-step ]
+;     [ take-random-step ]
+; end
+
+; to find-emotion-neighbors
+;   ;; interaction-radius is the distance within which personality agents
+;   ;; will have an impact on each other; it is a global variable set via a
+;   ;; slider in the GUI
+;   set emotion-neighbors (in-radius2 (other turtles) interaction-radius)
+; end
+
+; to take-emotion-interaction-step
+;   let coords summed-emotion-center-of-charge self
+;   facexy (x-coord coords) (y-coord coords)
+;   forward 1
+; end
+
+to set-mood-turtle-colors
+  ask patches [
+    set pcolor black
+  ]
+  let mn-mood (min [mood-value] of turtles)
+  let mx-mood (max [mood-value] of turtles)
+  let md-mood (median [mood-value] of turtles)
+  ask turtles [
+    if mood-value < md-mood [
+      set color scale-color green mood-value mn-mood md-mood
+    ]
+    if mood-value > md-mood [
+      set color scale-color red mood-value mx-mood md-mood
+    ]
+  ]
+end
+
+; to-report emotion-counts
+;   report sort-tuples (frequencies [emotion-id] of turtles)
+; end

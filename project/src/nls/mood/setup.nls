@@ -1,0 +1,20 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;   Setup Procedures   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+to setup
+  clear-all
+  random-seed rand-seed
+  set-default-shape turtles "person"
+  ;; agent-count is the total number of personality agents in the model; it is
+  ;; a global variable set via a slider in the GUI
+  create-turtles agent-count [
+    setxy random-xcor random-ycor
+    ;; We use a simple emotion model of two types. For details, see the code
+    ;; documentation in `emotion/util.nls`.
+    set mood-value get-random-mood
+    ;set mood-neighbors nobody
+  ]
+  set-moods
+  reset-ticks
+end

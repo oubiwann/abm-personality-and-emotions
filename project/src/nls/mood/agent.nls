@@ -1,0 +1,68 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;   Agent Support Procedures   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+; to-report member-mood? [agent mood-values]
+;   let agent-mood [mood-value] of agent
+;   if member? agent-mood mood-values [ report true ]
+;   report false
+; end
+
+; to-report mood-agent-intersection [agents mood-values]
+;   if agents = nobody [ report agents ]
+;   if mood-values = [] [ report nobody ]
+;   report turtle-set (map [x -> agents with [mood-value = x]] mood-values)
+; end
+
+; to-report filter-attracted-mood-agents [agent]
+;   report mood-agent-intersection [mood-neighbors] of agent
+;                                     (attracted-mood-lookup [mood-id] of agent)
+; end
+
+; to-report filter-repulsed-mood-agents [agent]
+;   report mood-agent-intersection [mood-neighbors] of agent
+;                                     (repulsed-mood-lookup [mood-id] of agent)
+; end
+
+; to-report attracted-mood-agent-distances [agent]
+;   report agent-distances agent (filter-attracted-mood-agents agent)
+; end
+
+; to-report repulsed-mood-agent-distances [agent]
+;   report agent-distances agent (filter-repulsed-mood-agents agent)
+; end
+
+; to-report attracted-mood-agent-coords [agent]
+;   report agents-coords (filter-attracted-mood-agents agent)
+; end
+
+; to-report repulsed-mood-agent-coords [agent]
+;   report agents-coords (filter-repulsed-mood-agents agent)
+; end
+
+; to-report attracted-mood-center-of-charge [agent]
+;   let agents (filter-attracted-mood-agents agent)
+;   if agents = nobody or not any? agents [
+;     report agent-coords agent
+;   ]
+;   report center-of-charge (agent-augmented-coords
+;                            agent
+;                            agents)
+; end
+
+; to-report repulsed-mood-center-of-charge [agent]
+;   let agents (filter-repulsed-mood-agents agent)
+;   if agents = nobody or not any? agents [
+;     report agent-coords agent
+;   ]
+;   report center-of-charge (agent-augmented-coords
+;                            agent
+;                            agents)
+; end
+
+; to-report summed-mood-center-of-charge [agent]
+;   let attracted-coords attracted-mood-center-of-charge agent
+;   let repulsed-coords repulsed-mood-center-of-charge agent
+;   let adj-repulsed-coords flip-point repulsed-coords agent-coords agent
+;   report center-of-charge (list attracted-coords adj-repulsed-coords)
+; end
