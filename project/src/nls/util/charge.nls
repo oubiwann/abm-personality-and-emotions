@@ -1,0 +1,50 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;   Charge Support Procedures   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; The following utility functions operate on an custom coordinate data
+;; structure:
+;;
+;;    [x-coord, y-coord]
+;;
+
+to-report x-coord [data]
+  report item 0 data
+end
+
+to-report y-coord [data]
+  report item 1 data
+end
+
+;; The following are named with a `patch-` prefix but are suitable for use
+;; with any function that would behave better with integers (e.g., as opposed
+;; to floating points). This function is used for patches in order to avoid
+;; asking for a patch coordinate that is beyond the bound of the world.
+
+to-report x-patch [data]
+  report int (x-coord data)
+end
+
+to-report y-patch [data]
+  report int (y-coord data)
+end
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+to-report charge [dist]
+  report (dist)^(-2)
+end
+
+to-report summed-charge [distances]
+  report sum (map [x -> (charge x)] distances)
+end
+to-report summed-coords [coords]
+  report reduce [ [acc x-y-ch] -> (list (x-coord acc + x-coord x-y-ch)
+                                        (y-coord acc + y-coord x-y-ch)) ]
+                coords
+end
+
+to-report center-of-charge [coords]
+  report map [ coord -> coord / (length coords) ]
+             (summed-coords coords)
+end

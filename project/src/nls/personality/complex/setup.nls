@@ -1,0 +1,21 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;   Setup Procedures   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+to setup
+  clear-all
+  random-seed rand-seed
+  set-default-shape turtles "person"
+  ;; agent-count is the total number of personality agents in the model; it is
+  ;; a global variable set via a slider in the GUI
+  create-turtles agent-count [
+    setxy random-xcor random-ycor
+    ;; We use a personality model of two types and type subtypes, giving us a
+    ;; total of four personalities. For details, see the code documentation
+    ;; in in `util/personality/complex.nls`.
+    set personality-id get-random-complex-personality
+    set personality-neighbors nobody
+  ]
+  set-personalities
+  reset-ticks
+end

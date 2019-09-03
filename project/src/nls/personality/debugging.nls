@@ -2,39 +2,6 @@
 ;;;   Visual Debugging Procedures   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-to show-attracted
-  let agent turtle selected-agent
-  set-all-blue
-  set-yellow agent
-  highlight-attracted agent
-end
-
-to show-repulsed
-  let agent turtle selected-agent
-  set-all-blue
-  set-yellow agent
-  highlight-repulsed agent
-end
-
-to show-relations
-  let agent turtle selected-agent
-  set-all-blue
-  set-yellow agent
-  highlight-relations agent
-end
-
-to set-yellow [agent]
-  ask agent [
-    set color yellow
-    ]
-end
-
-to set-all-blue
-  ask turtles [
-    set color blue
-  ]
-end
-
 to highlight-attracted [agent]
   let attracted-agents filter-attracted-agents agent
   if attracted-agents != nobody [
@@ -60,15 +27,15 @@ end
 
 to show-attracted-center-of-charge
   let xy attracted-center-of-charge turtle selected-agent
-  ask patch (item 0 xy) (item 1 xy) [ set pcolor 58 ]
+  ask patch (x-patch xy) (y-patch xy) [ set pcolor 58 ]
 end
 
 to show-repulsed-center-of-charge
   let xy repulsed-center-of-charge turtle selected-agent
-  ask patch (item 0 xy) (item 1 xy) [ set pcolor 18 ]
+  ask patch (x-patch xy) (y-patch xy) [ set pcolor 18 ]
 end
 
 to show-combined-center-of-charge
   let xy summed-center-of-charge turtle selected-agent
-  ask patch (item 0 xy) (item 1 xy) [ set pcolor white ]
+  ask patch (x-patch xy) (y-patch xy) [ set pcolor white ]
 end

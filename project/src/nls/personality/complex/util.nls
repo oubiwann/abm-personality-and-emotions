@@ -48,7 +48,7 @@ to-report name-to-id [type-name]
   if type-name = "IVb" [ report 7 ]
 end
 
-;; Arbitrary color assignmentn to personality types:
+;; Arbitrary color assignments to personality types:
 to-report id-to-color [type-id]
   if type-id = 0 [ report green ]
   if type-id = 1 [ report turquoise ]

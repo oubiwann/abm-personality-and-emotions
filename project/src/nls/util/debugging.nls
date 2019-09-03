@@ -1,0 +1,36 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;   Visual Debugging Procedures   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+to show-attracted
+  let agent turtle selected-agent
+  set-all-blue
+  set-yellow agent
+  highlight-attracted agent
+end
+
+to show-repulsed
+  let agent turtle selected-agent
+  set-all-blue
+  set-yellow agent
+  highlight-repulsed agent
+end
+
+to show-relations
+  let agent turtle selected-agent
+  set-all-blue
+  set-yellow agent
+  highlight-relations agent
+end
+
+to set-yellow [agent]
+  ask agent [
+    set color yellow
+    ]
+end
+
+to set-all-blue
+  ask turtles [
+    set color blue
+  ]
+end

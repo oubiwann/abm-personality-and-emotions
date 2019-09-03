@@ -19,15 +19,17 @@ turtles-own [
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 __includes [
-  "src/netlogo/agent.nls"
-  "src/netlogo/debugging.nls"
-  "src/netlogo/main.nls"
-  "src/netlogo/setup/personality/simple.nls"
-  "src/netlogo/turtle.nls"
-  "src/netlogo/util/charge.nls"
-  "src/netlogo/util/general.nls"
-  "src/netlogo/util/personality/common.nls"
-  "src/netlogo/util/personality/simple.nls"
+  "src/nls/personality/agent.nls"
+  "src/nls/personality/debugging.nls"
+  "src/nls/personality/main.nls"
+  "src/nls/personality/simple/setup.nls"
+  "src/nls/personality/simple/util.nls"
+  "src/nls/personality/turtle.nls"
+  "src/nls/personality/util.nls"
+  "src/nls/util/agent.nls"
+  "src/nls/util/charge.nls"
+  "src/nls/util/debugging.nls"
+  "src/nls/util/general.nls"
   ]
 
 ;; Copyright © 2019 Duncan McGreggor.
@@ -48,8 +50,8 @@ GRAPHICS-WINDOW
 1
 1
 0
-0
-0
+1
+1
 1
 -28
 28
@@ -84,7 +86,7 @@ BUTTON
 360
 93
 go
-go-personality
+go
 T
 1
 T
@@ -104,7 +106,7 @@ agent-count
 agent-count
 4
 1000
-55.0
+108.0
 1
 1
 NIL
@@ -129,7 +131,7 @@ interaction-radius
 interaction-radius
 0
 100
-12.0
+11.0
 1
 1
 NIL
@@ -145,37 +147,22 @@ Model Manager
 0.0
 1
 
-SLIDER
-20
-140
-185
-173
-force-multiplier
-force-multiplier
-0.01
-100
-1.0
-0.01
-1
-NIL
-HORIZONTAL
-
 INPUTBOX
 20
-340
+310
 117
-400
+370
 selected-agent
-1.0
+54.0
 1
 0
 Number
 
 TEXTBOX
 20
-305
+275
 170
-327
+297
 Highlight
 18
 0.0
@@ -183,9 +170,9 @@ Highlight
 
 BUTTON
 20
-440
+410
 118
-473
+443
 show relations
 show-relations
 NIL
@@ -200,9 +187,9 @@ NIL
 
 BUTTON
 20
-480
+450
 120
-513
+483
 show +'s
 show-attracted
 NIL
@@ -217,9 +204,9 @@ NIL
 
 BUTTON
 20
-520
+490
 120
-553
+523
 show -'s
 show-repulsed
 NIL
@@ -234,9 +221,9 @@ NIL
 
 BUTTON
 20
-560
+530
 120
-593
+563
 reset colors
 set-turtle-colors
 NIL
@@ -251,9 +238,9 @@ NIL
 
 BUTTON
 125
-440
+410
 225
-473
+443
 show +center
 show-attracted-center-of-charge
 NIL
@@ -268,9 +255,9 @@ NIL
 
 TEXTBOX
 125
-410
+380
 250
-431
+401
 Center of Charge
 14
 0.0
@@ -278,9 +265,9 @@ Center of Charge
 
 BUTTON
 125
-480
+450
 225
-513
+483
 show -center
 show-repulsed-center-of-charge
 NIL
@@ -295,9 +282,9 @@ NIL
 
 BUTTON
 125
-520
+490
 225
-553
+523
 show combined
 show-combined-center-of-charge
 NIL
@@ -330,9 +317,9 @@ PENS
 
 TEXTBOX
 20
-410
+380
 170
-428
+398
 Relations
 14
 0.0
@@ -340,14 +327,14 @@ Relations
 
 SLIDER
 20
-260
+220
 185
-293
+253
 rand-seed
 rand-seed
 0
 256
-108.0
+216.0
 1
 1
 NIL
@@ -355,9 +342,9 @@ HORIZONTAL
 
 SLIDER
 20
-180
+140
 185
-213
+173
 personality-stdd
 personality-stdd
 0
@@ -370,9 +357,9 @@ HORIZONTAL
 
 SLIDER
 20
-220
+180
 185
-253
+213
 personality-norm
 personality-norm
 0

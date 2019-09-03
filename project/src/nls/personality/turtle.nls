@@ -1,5 +1,5 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;   Turtle Procedures   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;   Turtle Personality Procedures   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 to set-personalities
@@ -25,30 +25,7 @@ end
 
 to take-interaction-step
   let coords summed-center-of-charge self
-  facexy (item 0 coords) (item 1 coords)
-  forward 1
-end
-
-to-report interaction-force
-  ;; This procedure calculates the force of personalities on the current
-  ;; agent from all of its neighbors. This involves several steps:
-  ;;
-  ;; 1. Get the distance to each neighbor (direction)
-  ;; 2. Get the personality type of each neighbor and calculate its impact
-  ;;    on the current agent (magnitude)
-  ;; 3. With 1 & 2, create a vector for each neighbor
-  ;; 4. Calulate the sum of the "forces" of these vectors; if positive, the
-  ;;    agent will be attracted, and if negative, the agent will be repulsed.
-
-  ;; force-multiplier is an arbitrary rational number that limits the
-  ;; force of personality interaction, from zero, though to partial, to
-  ;; maximum influence; it is a global variable set via a slider in the
-  ;; GUI
-end
-
-to take-random-step
-  ;;set heading random 360
-  rt random 30
+  facexy (x-coord coords) (y-coord coords)
   forward 1
 end
 

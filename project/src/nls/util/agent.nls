@@ -1,0 +1,24 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;   Agent Utility Procedures   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+to-report agent-distances [agent agents]
+  let agent-ids [who] of agents
+  report (map [x -> ([distance turtle x] of agent)] agent-ids)
+end
+
+to-report agent-coords [agent]
+  report [(list xcor ycor)] of agent
+end
+
+to-report agents-coords [agents]
+  report [(list xcor ycor)] of agents
+end
+
+to-report agent-augmented-coords [agent agents]
+  let agent-ids [who] of agents
+  report (map [x -> (list [xcor] of turtle x
+                          [ycor] of turtle x
+                          (charge [distance turtle x] of agent)) ]
+              agent-ids)
+end

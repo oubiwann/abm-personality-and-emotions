@@ -52,7 +52,3 @@
         (netlogo/report ws "center-of-charge" [[0 0] [1 1] [2 2]])))
     (is (= "[3 4]"
         (netlogo/report ws "center-of-charge" [[1 2] [3 4] [5 6]])))))
-
-; (deftest sum-forces
-;   (let [ws (netlogo/create-workspace model)]
-;     (is (= "xxx" (netlogo/report "sum-forces" ws [1] [2])))))
