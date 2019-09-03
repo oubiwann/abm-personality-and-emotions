@@ -7,7 +7,7 @@ build:
 script:
   - make test
 jdk:
-  - oraclejdk8
+  #- oraclejdk8
   - openjdk8
   - openjdk11
 env:
