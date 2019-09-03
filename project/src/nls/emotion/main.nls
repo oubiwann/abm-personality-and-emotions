@@ -2,7 +2,7 @@
 ;;;   Entrypoint Procedures   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-to go-personality
-  ask turtles [ move-personality-agents ]
+to go
+  ask turtles [ move-emotion-agents ]
   tick
 end

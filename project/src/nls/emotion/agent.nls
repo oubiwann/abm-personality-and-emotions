@@ -1,0 +1,68 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;   Agent Support Procedures   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+to-report member-emotion? [agent emotion-ids]
+  let agent-emotion [emotion-id] of agent
+  if member? agent-emotion emotion-ids [ report true ]
+  report false
+end
+
+to-report emotion-agent-intersection [agents emotion-ids]
+  if agents = nobody [ report agents ]
+  if emotion-ids = [] [ report nobody ]
+  report turtle-set (map [x -> agents with [emotion-id = x]] emotion-ids)
+end
+
+to-report filter-attracted-emotion-agents [agent]
+  report emotion-agent-intersection [emotion-neighbors] of agent
+                                    (attracted-emotion-lookup [emotion-id] of agent)
+end
+
+to-report filter-repulsed-emotion-agents [agent]
+  report emotion-agent-intersection [emotion-neighbors] of agent
+                                    (repulsed-emotion-lookup [emotion-id] of agent)
+end
+
+to-report attracted-emotion-agent-distances [agent]
+  report agent-distances agent (filter-attracted-emotion-agents agent)
+end
+
+to-report repulsed-emotion-agent-distances [agent]
+  report agent-distances agent (filter-repulsed-emotion-agents agent)
+end
+
+to-report attracted-emotion-agent-coords [agent]
+  report agents-coords (filter-attracted-emotion-agents agent)
+end
+
+to-report repulsed-emotion-agent-coords [agent]
+  report agents-coords (filter-repulsed-emotion-agents agent)
+end
+
+to-report attracted-emotion-center-of-charge [agent]
+  let agents (filter-attracted-emotion-agents agent)
+  if agents = nobody or not any? agents [
+    report agent-coords agent
+  ]
+  report center-of-charge (agent-augmented-coords
+                           agent
+                           agents)
+end
+
+to-report repulsed-emotion-center-of-charge [agent]
+  let agents (filter-repulsed-emotion-agents agent)
+  if agents = nobody or not any? agents [
+    report agent-coords agent
+  ]
+  report center-of-charge (agent-augmented-coords
+                           agent
+                           agents)
+end
+
+to-report summed-emotion-center-of-charge [agent]
+  let attracted-coords attracted-emotion-center-of-charge agent
+  let repulsed-coords repulsed-emotion-center-of-charge agent
+  let adj-repulsed-coords flip-point repulsed-coords agent-coords agent
+  report center-of-charge (list attracted-coords adj-repulsed-coords)
+end

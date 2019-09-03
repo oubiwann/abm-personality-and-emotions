@@ -1,15 +1,48 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;   Global Data   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+globals []
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;   Turtle Data   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+turtles-own [
+  emotion-id
+  emotion-type
+  emotion-neighbors
+]
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;   Source Includes   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+__includes [
+  "src/nls/emotion/agent.nls"
+  "src/nls/emotion/debugging.nls"
+  "src/nls/emotion/main.nls"
+  "src/nls/emotion/setup.nls"
+  "src/nls/emotion/turtle.nls"
+  "src/nls/emotion/util.nls"
+  "src/nls/util/agent.nls"
+  "src/nls/util/charge.nls"
+  "src/nls/util/debugging.nls"
+  "src/nls/util/general.nls"
+  ]
+
 ;; Copyright © 2019 Duncan McGreggor.
 ;; See "Info" tab for full copyright and license.
 ;;
 @#$#@#$#@
 GRAPHICS-WINDOW
-210
-10
-647
-448
+370
+25
+1221
+522
 -1
 -1
-13.0
+14.805
 1
 10
 1
@@ -19,52 +52,440 @@ GRAPHICS-WINDOW
 1
 1
 1
+-28
+28
 -16
 16
--16
-16
-0
-0
+1
+1
 1
 ticks
 30.0
 
+BUTTON
+195
+60
+275
+93
+setup
+setup
+NIL
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+1
+
+BUTTON
+280
+60
+360
+93
+go
+go
+T
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+0
+
+SLIDER
+20
+60
+185
+93
+agent-count
+agent-count
+4
+1000
+108.0
+1
+1
+NIL
+HORIZONTAL
+
+TEXTBOX
+21
+22
+171
+44
+Initial Conditions
+18
+0.0
+1
+
+SLIDER
+20
+100
+185
+133
+interaction-radius
+interaction-radius
+0
+100
+11.0
+1
+1
+NIL
+HORIZONTAL
+
+TEXTBOX
+195
+22
+345
+44
+Model Manager
+18
+0.0
+1
+
+INPUTBOX
+20
+310
+117
+370
+selected-agent
+54.0
+1
+0
+Number
+
+TEXTBOX
+20
+275
+170
+297
+Highlight
+18
+0.0
+1
+
+BUTTON
+20
+410
+118
+443
+show relations
+show-relations
+NIL
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+0
+
+BUTTON
+20
+450
+120
+483
+show +'s
+show-attracted
+NIL
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+0
+
+BUTTON
+20
+490
+120
+523
+show -'s
+show-repulsed
+NIL
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+0
+
+BUTTON
+20
+530
+120
+563
+reset colors
+set-emotion-turtle-colors
+NIL
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+0
+
+BUTTON
+125
+410
+225
+443
+show +center
+show-attracted-center-of-charge
+NIL
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+0
+
+TEXTBOX
+125
+380
+250
+401
+Center of Charge
+14
+0.0
+1
+
+BUTTON
+125
+450
+225
+483
+show -center
+show-repulsed-center-of-charge
+NIL
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+0
+
+BUTTON
+125
+490
+225
+523
+show combined
+show-combined-center-of-charge
+NIL
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+0
+
+PLOT
+195
+100
+360
+220
+Emotion Distribution
+NIL
+NIL
+0.0
+2.0
+0.0
+10.0
+true
+false
+"" ""
+PENS
+"default" 1.0 1 -16777216 true "" "histogram [emotion-id] of turtles"
+
+TEXTBOX
+20
+380
+170
+398
+Relations
+14
+0.0
+1
+
+SLIDER
+20
+220
+185
+253
+rand-seed
+rand-seed
+0
+256
+216.0
+1
+1
+NIL
+HORIZONTAL
+
+SLIDER
+20
+140
+185
+173
+emotion-stdd
+emotion-stdd
+0
+2
+1.0
+0.01
+1
+NIL
+HORIZONTAL
+
+SLIDER
+20
+180
+185
+213
+emotion-norm
+emotion-norm
+0
+2
+1.0
+0.01
+1
+NIL
+HORIZONTAL
+
 @#$#@#$#@
 ## WHAT IS IT?
 
-(a general understanding of what the model is trying to show or explain)
+This is a model that explores interactions between set set of simple personality types and subtypes. Interactions occur as a result of "compatibility" between a type/subtype combination in two or more agents. The interaction itself is manifested by agents moving in the world: higher compatibility leads to movement towards, lower compatibility leads to movement away.
 
 ## HOW IT WORKS
 
-(what rules the agents use to create the overall behavior of the model)
+### Personality Model
+
+In order to model attractions between models of similar and dissimilar types, where there is attraction and repulsion for both, we've defined an arbitrary personality model that has two types and two subtypes:
+
+* `Ia`
+* `Ib`
+* `IIa`
+* `IIb`
+
+### Attraction Model
+
+All possible personality type interactions are given by the right triangular matrix:
+
+![Personality interaction matrix](https://raw.githubusercontent.com/oubiwann/intro-abm/gh-pages/resources/images/personality-interaction-matrix.gif)
+
+with the following rules for attraction/repulsion:
+
+1. Type `I`'s are attracted to each other.
+2. Type `II`'s are repulsed from each other.
+3. Subtype `a`'s of different types are attracted.
+4. Subtype `b`'s of different types are repulsed.
+5. `Ia` personalities are attracted to their opposite in type and subtype.
+6. `Ib` personalities are repulsed from their opposite in type and subtype.
+
+This gives us the following table of attraction/repulsion interactions for the personality types and subtypes from the right triangular matrix:
+
+```
+      | Ia | Ib | IIa | IIb |
+|-----+----|----|-----|-----|
+|  Ia |  + |  + |  +  |  +  |
+|  Ib |    |  + |  -  |  -  |
+| IIa |    |    |  -  |  -  |
+| IIb |    |    |     |  -  |
+```
+
+Attraction and repulsion between agents are modeled on [Coulomb's law](https://en.wikipedia.org/wiki/Coulomb%27s_law) <sup>[1]</sup>, while combining the effects of multiple agents is modeled with the [center of mass](https://en.wikipedia.org/wiki/Center_of_mass). In our case, instead of a mass we use the inverse square of the distance to the agent in question (this provides the magnitude of the interaction: the closer, the more it has an impact).
+
+
+### Agent Interactions
+
+When any two agents are within an arbitrary (configurable) distance, the degree to which they are attracted or repulsed is based upon the square of the distance between them. As there can be any number of agents within the "distance of effect", we calculate a summed effect of all agents using the same calculations one does to determine the center of mass in two dimensions.
+
+In essence, all attracted agents are identified within the distance of effect, with their x and y coordinates used to determine a central location, replacing all attracting agents with a single representative. The same is done for repulsing agents. For the direction component of the agent velocity vector, the agent in question simply faces the direction of the location of the center of action of the attracting agents. For the magnitude component of the agent velocity vector, the inverse square of the distance is to the center of action is used. For repulsing agents, the center of action is also calculated, but the center is moved to the other side of the agent in question and is then calculated as an attracting agent, using vector addition with the results for the attracting agents.
+
+----
+
+**Section Footnotes**
+
+[1] Originally we'd thought of gravitation as our model for attraction, and just inverting it for repulsion. However, Andreas Sjöstedt recommended using Coulomb's law instead, which was of course an excellent idea, with electrically charged particles providing a more consistent analogy for the personality attraction and repulsion in our model.
 
 ## HOW TO USE IT
 
-(how to use the model, including a description of each of the items in the Interface tab)
+TBD
 
 ## THINGS TO NOTICE
 
-(suggested things for the user to notice while running the model)
+TBD
 
 ## THINGS TO TRY
 
-(suggested things for the user to try to do (move sliders, switches, etc.) with the model)
+TBD
 
 ## EXTENDING THE MODEL
 
-(suggested things to add or change in the Code tab to make the model more complicated, detailed, accurate, etc.)
+### Different Personality Attraction Models
 
-## NETLOGO FEATURES
+This model's definition of attraction between types was especially designed to provide balance across all permutations and ensure that at least one type was attracted to another; exploring a model that had a universal repulsor that no agent was attracted to (even those of its own type) would be an interesting exercise.
 
-(interesting or unusual features of NetLogo that the model uses, particularly in the Code tab; or where workarounds were needed for missing features)
+## NETLOGO ISSUES AND MISSING FUNCTIONS
+
+1. This model was developed using Netlogo 6.1, which [has a bug](https://github.com/NetLogo/NetLogo/issues/1763) preventing the `in-radius` function from performing correctly under various circumstances. The Github issue for the bug mentions [another ticket](https://github.com/NetLogo/NetLogo/issues/1756) which provides a workaround for this problem. That workaround was applied in this project (the procedure was named `in-radius2`).
+1. This model uses the `__includes` feature in order to better manage source code in separate files. It was noticed that updates to the separate source files required reloading the model twice via the `File` -> `Recent Files` menu.
+1. While the `histogram` function was very convenient in the development of this model, there were noted absences of other functions, in particular the [frequencies function from Clojure](https://clojuredocs.org/clojure.core/frequencies). This was implemented in Netlogo (as well as a sorted tuples function) for better introspection of data. You may review the functions by viewing the [src/netlogo/util/general.nls](https://github.com/oubiwann/intro-abm/blob/master/project/src/netlogo/util/general.nls) file.
+1. Some basic set theoretic functions were absent from Netlogo, so these were implemented as well (see the same file as above).
 
 ## RELATED MODELS
 
-(models in the NetLogo Models Library and elsewhere which are of related interest)
+1. Wilensky, U. (1998). NetLogo Flocking model. http://ccl.northwestern.edu/netlogo/models/Flocking. Center for Connected Learning and Computer-Based Modeling, Northwestern University, Evanston, IL.
+1. Stonedahl, F., Wilensky, U., Rand, W. (2014). NetLogo Heroes and Cowards model. http://ccl.northwestern.edu/netlogo/models/HeroesandCowards. Center for Connected Learning and Computer-Based Modeling, Northwestern Institute on Complex Systems, Northwestern University, Evanston, IL.
 
-## CREDITS AND REFERENCES
+## HOW TO CITE
 
-(a reference to the model's URL on the web if it has one, as well as any other necessary credits, citations, and links)
+If you mention this model in a publication, we ask that you include the citation below.
+
+McGreggor, D. (2019). NetLogo Personality, Emotion, and Mood Bearing Agents. https://github.com/oubiwann/intro-abm/tree/master/project.
+
+## REFERENCES
+
+1. Egges, A., Kshirsagar, S., & Magnenat-Thalmann, N. (2003). A Model for Personality and Emotion Simulation. *Lecture Notes in Computer Science Knowledge-Based Intelligent Information and Engineering Systems*, 453-461. http://doi.org/10.1007/978-3-540-45224-9_63
+1. Deyoung, C. G., Hirsh, J. B., Shane, M. S., Papademetris, X., Rajeevan, N., & Gray, J. R. (2010). Testing Predictions From Personality Neuroscience. *Psychological Science*, 21(6), 820–828. http://doi.org/10.1177/0956797610370159
+1. Hatfield, E., Rapson, R. L., & Le, Y. L. (2009). Emotional Contagion and Empathy. *The Social Neuroscience of Empathy*, 19-30. http://doi.org/10.7551/mitpress/9780262012973.003.0003
+1. Deyoung, C. G., & Gray, J. R. (n.d.). Personality neuroscience: Explaining individual differences in affect, behaviour and cognition. *The Cambridge Handbook of Personality Psychology*, 323-346. http://doi.org/10.1017/cbo9780511596544.023
+1. Gerlach, M., Farb, B., Revelle, W., & Amaral, L. A. (2018). A robust data-driven approach identifies four personality types across four large data sets. *Nature Human Behaviour*, 2(10), 735-742. http://doi.org/10.1038/s41562-018-0419-z
+1. Mulders, P., Llera, A., Tendolkar, I., Eijndhoven, P. V., & Beckmann, C. (2018). Personality Profiles Are Associated with Functional Brain Networks Related to Cognition and Emotion. *Scientific Reports*, 8(1). http://doi.org/10.1038/s41598-018-32248-x
+
+## COPYRIGHT AND LICENSE
+
+Copyright © 2019 Duncan McGreggor.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
 @#$#@#$#@
 default
 true
@@ -388,5 +809,5 @@ true
 Line -7500403 true 150 150 90 180
 Line -7500403 true 150 150 210 180
 @#$#@#$#@
-0
+1
 @#$#@#$#@

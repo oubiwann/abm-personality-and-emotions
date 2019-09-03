@@ -1,0 +1,65 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;   Emotion Support Procedures   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; Our emotion model is very simple, with two types: a positive emotion and
+;; a negative emotion. The interaction between the emotion types can be shown
+;; in a grid:
+;;
+;;     | I | II |
+;; ----+---+----+
+;;   I | +    - |
+;;  II | -    + |
+;; ----+---+----+
+;;
+;; Here we define emotion type I as positive and emotion type II as negative
+;; with like attracting like, as depicted in the grid.
+;;
+;; By an arbitrary convention, we assign integers to the different emotion
+;; types:
+;;
+to-report emotion-id-to-name [type-id]
+  if type-id = 0 [ report "I" ]
+  if type-id = 1 [ report "II" ]
+end
+
+to-report emotion-name-to-id [type-name]
+  if type-name = "I" [ report 0 ]
+  if type-name = "II" [ report 1 ]
+end
+
+;; Arbitrary color assignments to emotion types:
+to-report emotion-id-to-color [type-id]
+  if type-id = 0 [ report green ]
+  if type-id = 1 [ report red ]
+end
+
+to-report attracted-emotion-lookup [self-type]
+  if self-type = 0 [ report [0] ]
+  if self-type = 1 [ report [1] ]
+  report word "Unknown type: " self-type
+end
+
+to-report repulsed-emotion-lookup [self-type]
+  if self-type = 0 [ report [1] ]
+  if self-type = 1 [ report [0] ]
+  report word "Unknown type: " self-type
+end
+
+;; Instead of an evenly distributed random population of emotions,
+;; we've created a function that is used to generate a normal distribution
+;; of emotions: those with mixed repulsion and attraction tendencies
+;; represent the normal, while those with very attracting or very repulsing
+;; tendencies are considered to be one standard deviation from the norm.
+;;
+;; There are only two emotions/ids
+to-report get-random-ranged-emotion [min-id max-id]
+  let random-id floor (random-normal emotion-norm emotion-stdd)
+  if random-id < min-id [set random-id min-id]
+  if random-id > max-id [set random-id max-id]
+  report random-id
+end
+
+to-report get-random-emotion
+	report get-random-ranged-emotion 0 1
+end
