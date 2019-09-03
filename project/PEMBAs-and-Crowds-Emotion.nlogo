@@ -130,7 +130,7 @@ interaction-radius
 interaction-radius
 0
 100
-11.0
+29.0
 1
 1
 NIL
@@ -372,77 +372,47 @@ HORIZONTAL
 @#$#@#$#@
 ## WHAT IS IT?
 
-This is a model that explores interactions between set set of simple personality types and subtypes. Interactions occur as a result of "compatibility" between a type/subtype combination in two or more agents. The interaction itself is manifested by agents moving in the world: higher compatibility leads to movement towards, lower compatibility leads to movement away.
+This is a model that explores interactions between set set of simple emotion types. Interactions occur as a result of "compatibility" between an emotion type combination in two or more agents. The interaction itself is manifested by agents moving in the world: higher compatibility leads to movement towards, lower compatibility leads to movement away.
 
 ## HOW IT WORKS
 
-### Personality Model
+### Emotion Model
 
-In order to model attractions between models of similar and dissimilar types, where there is attraction and repulsion for both, we've defined an arbitrary personality model that has two types and two subtypes:
-
-* `Ia`
-* `Ib`
-* `IIa`
-* `IIb`
+The emotion model is extremely simple: there are just two emotions (arbitrarily labeled "positive" and "negative").
 
 ### Attraction Model
 
-All possible personality type interactions are given by the right triangular matrix:
-
-![Personality interaction matrix](https://raw.githubusercontent.com/oubiwann/intro-abm/gh-pages/resources/images/personality-interaction-matrix.gif)
-
-with the following rules for attraction/repulsion:
-
-1. Type `I`'s are attracted to each other.
-2. Type `II`'s are repulsed from each other.
-3. Subtype `a`'s of different types are attracted.
-4. Subtype `b`'s of different types are repulsed.
-5. `Ia` personalities are attracted to their opposite in type and subtype.
-6. `Ib` personalities are repulsed from their opposite in type and subtype.
-
-This gives us the following table of attraction/repulsion interactions for the personality types and subtypes from the right triangular matrix:
-
-```
-      | Ia | Ib | IIa | IIb |
-|-----+----|----|-----|-----|
-|  Ia |  + |  + |  +  |  +  |
-|  Ib |    |  + |  -  |  -  |
-| IIa |    |    |  -  |  -  |
-| IIb |    |    |     |  -  |
-```
-
-Attraction and repulsion between agents are modeled on [Coulomb's law](https://en.wikipedia.org/wiki/Coulomb%27s_law) <sup>[1]</sup>, while combining the effects of multiple agents is modeled with the [center of mass](https://en.wikipedia.org/wiki/Center_of_mass). In our case, instead of a mass we use the inverse square of the distance to the agent in question (this provides the magnitude of the interaction: the closer, the more it has an impact).
+As with the emotion model itself, the attraction model is very simple: agents with postive emotions attract other agents with positive emtotions; negative likewise. Agents with differing emotions repulse.
 
 
 ### Agent Interactions
 
-When any two agents are within an arbitrary (configurable) distance, the degree to which they are attracted or repulsed is based upon the square of the distance between them. As there can be any number of agents within the "distance of effect", we calculate a summed effect of all agents using the same calculations one does to determine the center of mass in two dimensions.
-
-In essence, all attracted agents are identified within the distance of effect, with their x and y coordinates used to determine a central location, replacing all attracting agents with a single representative. The same is done for repulsing agents. For the direction component of the agent velocity vector, the agent in question simply faces the direction of the location of the center of action of the attracting agents. For the magnitude component of the agent velocity vector, the inverse square of the distance is to the center of action is used. For repulsing agents, the center of action is also calculated, but the center is moved to the other side of the agent in question and is then calculated as an attracting agent, using vector addition with the results for the attracting agents.
-
-----
-
-**Section Footnotes**
-
-[1] Originally we'd thought of gravitation as our model for attraction, and just inverting it for repulsion. However, Andreas Sjöstedt recommended using Coulomb's law instead, which was of course an excellent idea, with electrically charged particles providing a more consistent analogy for the personality attraction and repulsion in our model.
+When any two agents are within an arbitrary (configurable) distance, the degree to which they are attracted or repulsed is based upon the "visibility" parameter that is set in the interface, this being the radius (number of patches distant) one agent is from another.
 
 ## HOW TO USE IT
 
-TBD
+Click "Setup" and then "Go" to watch the default number of agents with the default emotion normal distribution interact with each other.
 
 ## THINGS TO NOTICE
 
-TBD
+The expected resuilt with such a simple model is the collapse of like-to-like into clusters. However, outliers that aren't pulled into clusters of agents with similar emotions do something unexpected: they disrupt clusters and will cause them to disintegrate. With the default settings, you will see this happen in the model if you let it run for a while, with a positive emotion outlier causing negative emotion clusters to split apart and then prevent them from clustering, even after 10,000+ ticks.
 
 ## THINGS TO TRY
 
-TBD
+* Use different random seeds to see different initial populations (both physical placement in the environment as well as emotion normal distributions).
+* Reduce the visibility (`interaction-radius`) to `0` while the model is running to allow clusters to dissipate and agents to difuse across the world, then increase visibility in tiny increments to watch how gradually increasing the sensitivity to others' emotions changes the overall behaviour, including moving the visibility to the same or greater than the width of the world.
+* Adjust the target normal and standard deviation for the distribution to see how disparity between emotions in the population affects clustering of groups.
 
 ## EXTENDING THE MODEL
 
-### Different Personality Attraction Models
+### Different Emotion Attraction Models
 
-This model's definition of attraction between types was especially designed to provide balance across all permutations and ensure that at least one type was attracted to another; exploring a model that had a universal repulsor that no agent was attracted to (even those of its own type) would be an interesting exercise.
+This model's definition is very simple; there is a great deal of research that has gone into emotional modling over the last 20 years, and some interesting theories which are not computationally expensive. Some of these have been linked in the references section, and offer interesting possibilities for model extension. In particular, the paper "A Model for Personality and Emotion Simulation" offers explicit examples integrating personality and emotion that would require the model to be updated with the following:
+
+* Allow for the change of each agent's emotional state over time (this would include not only tracking emotional history for each agent, but also the introduction of an emotional dissipation mechanism)
+* Support a greater number of emotions
+* Support multiple emotions simultaneously (i.e., an emotion vector of all supported emotions with values for those that are currently present in a given agent)
+* Introduce "event" agents into the model, whose presense would cause nearby agents to experience surges of emotion (e.g, events that would strongly affect one or more elements of an agent's emotion vector, such as "birth of child", "promotion", "natural disaster", "death in family").
 
 ## NETLOGO ISSUES AND MISSING FUNCTIONS
 

@@ -2,3 +2,4 @@
 /project/.lein*
 /project/target/
 /project/pom.*
+*DS_Store*

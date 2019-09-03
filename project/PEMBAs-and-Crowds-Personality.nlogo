@@ -69,7 +69,7 @@ BUTTON
 275
 93
 setup
-setup-personality
+setup
 NIL
 1
 T
@@ -412,38 +412,52 @@ This gives us the following table of attraction/repulsion interactions for the p
 | IIb |    |    |     |  -  |
 ```
 
-Attraction and repulsion between agents are modeled on [Coulomb's law](https://en.wikipedia.org/wiki/Coulomb%27s_law) <sup>[1]</sup>, while combining the effects of multiple agents is modeled with the [center of mass](https://en.wikipedia.org/wiki/Center_of_mass). In our case, instead of a mass we use the inverse square of the distance to the agent in question (this provides the magnitude of the interaction: the closer, the more it has an impact).
-
-
 ### Agent Interactions
 
-When any two agents are within an arbitrary (configurable) distance, the degree to which they are attracted or repulsed is based upon the square of the distance between them. As there can be any number of agents within the "distance of effect", we calculate a summed effect of all agents using the same calculations one does to determine the center of mass in two dimensions.
+Attraction and repulsion between agents is "visibility" based (in the user interface, this is controlled by the variable `interaction-radius`): agents within range of each other, affect each other; outside of that range, no effect is experienced.<sup>1</sup>
 
-In essence, all attracted agents are identified within the distance of effect, with their x and y coordinates used to determine a central location, replacing all attracting agents with a single representative. The same is done for repulsing agents. For the direction component of the agent velocity vector, the agent in question simply faces the direction of the location of the center of action of the attracting agents. For the magnitude component of the agent velocity vector, the inverse square of the distance is to the center of action is used. For repulsing agents, the center of action is also calculated, but the center is moved to the other side of the agent in question and is then calculated as an attracting agent, using vector addition with the results for the attracting agents.
+When agents are within the interaction radius, the cummulative effects of all agents on an agent in question is caluclated using the same math as done in introdiuctory physics courses where elemtns of vectors are summed: essentially this is simplified [center of mass](https://en.wikipedia.org/wiki/Center_of_mass).
+
+Reuplusion is a special case of attraction: the repulsion "center of mass" is calculated, then flipped 180 degrees around the agent in question and added to the attraction "center of mass" for the total motivating effect of all agents within the radius of interaction.
 
 ----
 
 **Section Footnotes**
 
-[1] Originally we'd thought of gravitation as our model for attraction, and just inverting it for repulsion. However, Andreas Sjöstedt recommended using Coulomb's law instead, which was of course an excellent idea, with electrically charged particles providing a more consistent analogy for the personality attraction and repulsion in our model.
+[1] Initially, the plan was for attraction and repulsion between agents to be modeled on [Coulomb's law](https://en.wikipedia.org/wiki/Coulomb%27s_law) <sup>[2]</sup>, while combining the effects of multiple agents is modeled with the [center of mass](https://en.wikipedia.org/wiki/Center_of_mass). In our case, instead of a mass we wanted to use the inverse square of the distance to the agent in question (this provides the magnitude of the interaction: the closer the agents, the more they would have an impact).
+
+[2] Originally we'd thought of gravitation as our model for attraction, and just inverting it for repulsion. However, Andreas Sjöstedt recommended using Coulomb's law instead, which was of course an excellent idea, with electrically charged particles providing a more consistent analogy for the personality attraction and repulsion in our model.
 
 ## HOW TO USE IT
 
-TBD
+Click "Setup" and then "Go" to watch the default number of agents with the default emotion normal distribution interact with each other.
 
 ## THINGS TO NOTICE
 
-TBD
+The expected resuilt with such a simple model is the collapse of like-to-like into clusters. However, outliers that aren't pulled into clusters of agents with similar personality do something unexpected: they disrupt clusters, causing them to disintegrate or preventing them from assembling in the first place.
+
+Different initial placements of agents as well as different normal distributions of personalities will result in indifferent clusters beingn formed and as well as the degree to which outliers that don't cluster are present in the world.
 
 ## THINGS TO TRY
 
-TBD
+* Use different random seeds to see different initial populations (both physical placement in the environment as well as personality type normal distributions).
+* Reduce the visibility (`interaction-radius`) to `0` while the model is running to allow clusters to dissipate and agents to difuse across the world, then increase visibility in tiny increments to watch how gradually increasing the sensitivity to others' personality types changes the overall behaviour, including moving the visibility to the same or greater than the width of the world.
+* Adjust the target normal and standard deviation for the distribution to see how disparity between emotions in the population affects clustering of groups.
+
 
 ## EXTENDING THE MODEL
+
+### Increased Personality Types
+
+By increasing the number of personality types, and thus increasing the number of ways in which agents may be attracted to or repulsed from each other, a wider range of behaviours would be exhibited and new patterns observed. In fact, the temptation to explore this was too strong, and one successful attempt was made in this same package (see the model `PEMBAs-and-Crowds-Personality-Complex.nlogo`). In a sampling of several world configurations, no long-term, fully-stable patterns were observed under the default settings, unlike in this simple personal model.
 
 ### Different Personality Attraction Models
 
 This model's definition of attraction between types was especially designed to provide balance across all permutations and ensure that at least one type was attracted to another; exploring a model that had a universal repulsor that no agent was attracted to (even those of its own type) would be an interesting exercise.
+
+### Augmenting Personalities
+
+There are agent models that combine personality with emotions and moods (see "A Model for Personality and Emotion Simulation" for more details), and this would be an extremely interesting extension for this model. The Emotional model in this package disusses some of this in more detail.
 
 ## NETLOGO ISSUES AND MISSING FUNCTIONS
 
