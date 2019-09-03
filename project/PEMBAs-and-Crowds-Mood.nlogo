@@ -371,7 +371,7 @@ HORIZONTAL
 @#$#@#$#@
 ## WHAT IS IT?
 
-TBD
+The Mood model is currently in early stages of development and not ready for presentation.
 
 ## HOW IT WORKS
 
