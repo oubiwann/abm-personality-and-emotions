@@ -49,8 +49,8 @@ PEMBAs: "personality-, emotion-, and mood-bearing agents."
    * Personality
       * [Simple](PEMBAs-and-Crowds-Personality.nlogo)
       * [Complex](PEMBAs-and-Crowds-Personality-Complex.nlogo)
-   * [Emotions](PEMBAs-and-Crowds-Emotions.nlogo)
-   * [Moods](PEMBAs-and-Crowds-Moods.nlogo) (in-progress)
+   * [Emotions](PEMBAs-and-Crowds-Emotion.nlogo)
+   * [Moods](PEMBAs-and-Crowds-Mood.nlogo) (in-progress)
    * [Combined](PEMBAs-and-Crowds.nlogo) (not started)
 3. Papers and articles
    * [A Model for Personality and Emotion Simulation](https://github.com/hexagram30/agent/blob/master/dev-resources/research/%5B2003%20Egges%5D%20A%20Model%20for%20Personality%20and%20Emotion%20Simulation.pdf)
