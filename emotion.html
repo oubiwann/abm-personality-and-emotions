@@ -113,21 +113,66 @@ ul ul ul {
 
 -->
 </style></head><body><h2>WHAT IS IT?</h2>
-<p>(a general understanding of what the model is trying to show or explain)</p>
+<p>This is a model that explores interactions between set set of simple emotion types. Interactions occur as a result of &ldquo;compatibility&rdquo; between an emotion type combination in two or more agents. The interaction itself is manifested by agents moving in the world: higher compatibility leads to movement towards, lower compatibility leads to movement away.</p>
 <h2>HOW IT WORKS</h2>
-<p>(what rules the agents use to create the overall behavior of the model)</p>
+<h3>Emotion Model</h3>
+<p>The emotion model is extremely simple: there are just two emotions (arbitrarily labeled &ldquo;positive&rdquo; and &ldquo;negative&rdquo;).</p>
+<h3>Attraction Model</h3>
+<p>As with the emotion model itself, the attraction model is very simple: agents with postive emotions attract other agents with positive emtotions; negative likewise. Agents with differing emotions repulse.</p>
+<h3>Agent Interactions</h3>
+<p>When any two agents are within an arbitrary (configurable) distance, the degree to which they are attracted or repulsed is based upon the &ldquo;visibility&rdquo; parameter that is set in the interface, this being the radius (number of patches distant) one agent is from another.</p>
 <h2>HOW TO USE IT</h2>
-<p>(how to use the model, including a description of each of the items in the Interface tab)</p>
+<p>Click &ldquo;Setup&rdquo; and then &ldquo;Go&rdquo; to watch the default number of agents with the default emotion normal distribution interact with each other.</p>
 <h2>THINGS TO NOTICE</h2>
-<p>(suggested things for the user to notice while running the model)</p>
+<p>The expected resuilt with such a simple model is the collapse of like-to-like into clusters. However, outliers that aren&rsquo;t pulled into clusters of agents with similar emotions do something unexpected: they disrupt clusters and will cause them to disintegrate. With the default settings, you will see this happen in the model if you let it run for a while, with a positive emotion outlier causing negative emotion clusters to split apart and then prevent them from clustering, even after 10,000+ ticks.</p>
 <h2>THINGS TO TRY</h2>
-<p>(suggested things for the user to try to do (move sliders, switches, etc.) with the model)</p>
+<ul>
+<li>Use different random seeds to see different initial populations (both physical placement in the environment as well as emotion normal distributions).</li>
+<li>Reduce the visibility (<code>interaction-radius</code>) to <code>0</code> while the model is running to allow clusters to dissipate and agents to difuse across the world, then increase visibility in tiny increments to watch how gradually increasing the sensitivity to others&rsquo; emotions changes the overall behaviour, including moving the visibility to the same or greater than the width of the world.</li>
+<li>Adjust the target normal and standard deviation for the distribution to see how disparity between emotions in the population affects clustering of groups.</li>
+</ul>
 <h2>EXTENDING THE MODEL</h2>
-<p>(suggested things to add or change in the Code tab to make the model more complicated, detailed, accurate, etc.)</p>
-<h2>NETLOGO FEATURES</h2>
-<p>(interesting or unusual features of NetLogo that the model uses, particularly in the Code tab; or where workarounds were needed for missing features)</p>
+<h3>Different Emotion Attraction Models</h3>
+<p>This model&rsquo;s definition is very simple; there is a great deal of research that has gone into emotional modling over the last 20 years, and some interesting theories which are not computationally expensive. Some of these have been linked in the references section, and offer interesting possibilities for model extension. In particular, the paper &ldquo;A Model for Personality and Emotion Simulation&rdquo; offers explicit examples integrating personality and emotion that would require the model to be updated with the following:</p>
+<ul>
+<li>Allow for the change of each agent&rsquo;s emotional state over time (this would include not only tracking emotional history for each agent, but also the introduction of an emotional dissipation mechanism)</li>
+<li>Support a greater number of emotions</li>
+<li>Support multiple emotions simultaneously (i.e., an emotion vector of all supported emotions with values for those that are currently present in a given agent)</li>
+<li>Introduce &ldquo;event&rdquo; agents into the model, whose presense would cause nearby agents to experience surges of emotion (e.g, events that would strongly affect one or more elements of an agent&rsquo;s emotion vector, such as &ldquo;birth of child&rdquo;, &ldquo;promotion&rdquo;, &ldquo;natural disaster&rdquo;, &ldquo;death in family&rdquo;).</li>
+</ul>
+<h2>NETLOGO ISSUES AND MISSING FUNCTIONS</h2>
+<ol>
+<li>This model was developed using Netlogo 6.1, which <a href="https://github.com/NetLogo/NetLogo/issues/1763">has a bug</a> preventing the <code>in-radius</code> function from performing correctly under various circumstances. The Github issue for the bug mentions <a href="https://github.com/NetLogo/NetLogo/issues/1756">another ticket</a> which provides a workaround for this problem. That workaround was applied in this project (the procedure was named <code>in-radius2</code>).</li>
+<li>This model uses the <code>__includes</code> feature in order to better manage source code in separate files. It was noticed that updates to the separate source files required reloading the model twice via the <code>File</code> -&gt; <code>Recent Files</code> menu.</li>
+<li>While the <code>histogram</code> function was very convenient in the development of this model, there were noted absences of other functions, in particular the <a href="https://clojuredocs.org/clojure.core/frequencies">frequencies function from Clojure</a>. This was implemented in Netlogo (as well as a sorted tuples function) for better introspection of data. You may review the functions by viewing the <a href="https://github.com/oubiwann/intro-abm/blob/master/project/src/netlogo/util/general.nls">src/netlogo/util/general.nls</a> file.</li>
+<li>Some basic set theoretic functions were absent from Netlogo, so these were implemented as well (see the same file as above).</li>
+</ol>
 <h2>RELATED MODELS</h2>
-<p>(models in the NetLogo Models Library and elsewhere which are of related interest)</p>
-<h2>CREDITS AND REFERENCES</h2>
-<p>(a reference to the model&rsquo;s URL on the web if it has one, as well as any other necessary credits, citations, and links)</p>
+<ol>
+<li>Wilensky, U. (1998). NetLogo Flocking model. <a href="http://ccl.northwestern.edu/netlogo/models/Flocking">http://ccl.northwestern.edu/netlogo/models/Flocking</a>. Center for Connected Learning and Computer-Based Modeling, Northwestern University, Evanston, IL.</li>
+<li>Stonedahl, F., Wilensky, U., Rand, W. (2014). NetLogo Heroes and Cowards model. <a href="http://ccl.northwestern.edu/netlogo/models/HeroesandCowards">http://ccl.northwestern.edu/netlogo/models/HeroesandCowards</a>. Center for Connected Learning and Computer-Based Modeling, Northwestern Institute on Complex Systems, Northwestern University, Evanston, IL.</li>
+</ol>
+<h2>HOW TO CITE</h2>
+<p>If you mention this model in a publication, we ask that you include the citation below.</p>
+<p>McGreggor, D. (2019). NetLogo Personality, Emotion, and Mood Bearing Agents. <a href="https://github.com/oubiwann/intro-abm/tree/master/project">https://github.com/oubiwann/intro-abm/tree/master/project</a>.</p>
+<h2>REFERENCES</h2>
+<ol>
+<li>Egges, A., Kshirsagar, S., &amp; Magnenat-Thalmann, N. (2003). A Model for Personality and Emotion Simulation. <em>Lecture Notes in Computer Science Knowledge-Based Intelligent Information and Engineering Systems</em>, 453-461. <a href="http://doi.org/10.1007/978-3-540-45224-9_63">http://doi.org/10.1007/978-3-540-45224-9_63</a></li>
+<li>Deyoung, C. G., Hirsh, J. B., Shane, M. S., Papademetris, X., Rajeevan, N., &amp; Gray, J. R. (2010). Testing Predictions From Personality Neuroscience. <em>Psychological Science</em>, 21(6), 820–828. <a href="http://doi.org/10.1177/0956797610370159">http://doi.org/10.1177/0956797610370159</a></li>
+<li>Hatfield, E., Rapson, R. L., &amp; Le, Y. L. (2009). Emotional Contagion and Empathy. <em>The Social Neuroscience of Empathy</em>, 19-30. <a href="http://doi.org/10.7551/mitpress/9780262012973.003.0003">http://doi.org/10.7551/mitpress/9780262012973.003.0003</a></li>
+<li>Deyoung, C. G., &amp; Gray, J. R. (n.d.). Personality neuroscience: Explaining individual differences in affect, behaviour and cognition. <em>The Cambridge Handbook of Personality Psychology</em>, 323-346. <a href="http://doi.org/10.1017/cbo9780511596544.023">http://doi.org/10.1017/cbo9780511596544.023</a></li>
+<li>Gerlach, M., Farb, B., Revelle, W., &amp; Amaral, L. A. (2018). A robust data-driven approach identifies four personality types across four large data sets. <em>Nature Human Behaviour</em>, 2(10), 735-742. <a href="http://doi.org/10.1038/s41562-018-0419-z">http://doi.org/10.1038/s41562-018-0419-z</a></li>
+<li>Mulders, P., Llera, A., Tendolkar, I., Eijndhoven, P. V., &amp; Beckmann, C. (2018). Personality Profiles Are Associated with Functional Brain Networks Related to Cognition and Emotion. <em>Scientific Reports</em>, 8(1). <a href="http://doi.org/10.1038/s41598-018-32248-x">http://doi.org/10.1038/s41598-018-32248-x</a></li>
+</ol>
+<h2>COPYRIGHT AND LICENSE</h2>
+<p>Copyright © 2019 Duncan McGreggor.</p>
+<p>Licensed under the Apache License, Version 2.0 (the &ldquo;License&rdquo;);<br />
+you may not use this file except in compliance with the License.<br />
+You may obtain a copy of the License at</p>
+<p><a href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
+<p>Unless required by applicable law or agreed to in writing, software<br />
+distributed under the License is distributed on an &ldquo;AS IS&rdquo; BASIS,<br />
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.<br />
+See the License for the specific language governing permissions and<br />
+limitations under the License.</p>
 </body></html>
