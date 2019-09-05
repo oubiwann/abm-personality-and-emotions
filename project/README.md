@@ -33,9 +33,9 @@ as documentation viewable on Github:
 * Personality Model
     * [Simple](https://oubiwann.github.io/intro-abm/personality.html)
     * [Complex](https://oubiwann.github.io/intro-abm/personality-complex.html)
-* [Emotion Model](https://oubiwann.github.io/intro-abm/emotion.html)
+* [Emotion Model](https://oubiwann.github.io/intro-abm/emotion.html) (in-progress)
 * [Mood Model](https://oubiwann.github.io/intro-abm/mood.html)
-* [Combined Models](https://oubiwann.github.io/intro-abm/combined.html)
+* [Combined Models](https://oubiwann.github.io/intro-abm/combined.html) (not started)
 
 ## Naming
 
