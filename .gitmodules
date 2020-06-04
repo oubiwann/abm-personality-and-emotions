@@ -1,0 +1,4 @@
+[submodule "docs"]
+	path = docs
+	url = git@github.com:oubiwann/abm-personality-and-emotions.git
+	branch = gh-pages
