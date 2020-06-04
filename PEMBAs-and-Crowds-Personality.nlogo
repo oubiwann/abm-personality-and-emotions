@@ -390,7 +390,7 @@ In order to model attractions between models of similar and dissimilar types, wh
 
 All possible personality type interactions are given by the right triangular matrix:
 
-![Personality interaction matrix](https://raw.githubusercontent.com/oubiwann/intro-abm/gh-pages/resources/images/personality-interaction-matrix.gif)
+![Personality interaction matrix](https://raw.githubusercontent.com/oubiwann/abm-personality-and-emotions/gh-pages/resources/images/personality-interaction-matrix.gif)
 
 with the following rules for attraction/repulsion:
 
@@ -463,7 +463,7 @@ There are agent models that combine personality with emotions and moods (see "A 
 
 1. This model was developed using Netlogo 6.1, which [has a bug](https://github.com/NetLogo/NetLogo/issues/1763) preventing the `in-radius` function from performing correctly under various circumstances. The Github issue for the bug mentions [another ticket](https://github.com/NetLogo/NetLogo/issues/1756) which provides a workaround for this problem. That workaround was applied in this project (the procedure was named `in-radius2`).
 1. This model uses the `__includes` feature in order to better manage source code in separate files. It was noticed that updates to the separate source files required reloading the model twice via the `File` -> `Recent Files` menu.
-1. While the `histogram` function was very convenient in the development of this model, there were noted absences of other functions, in particular the [frequencies function from Clojure](https://clojuredocs.org/clojure.core/frequencies). This was implemented in Netlogo (as well as a sorted tuples function) for better introspection of data. You may review the functions by viewing the [src/netlogo/util/general.nls](https://github.com/oubiwann/intro-abm/blob/master/project/src/netlogo/util/general.nls) file.
+1. While the `histogram` function was very convenient in the development of this model, there were noted absences of other functions, in particular the [frequencies function from Clojure](https://clojuredocs.org/clojure.core/frequencies). This was implemented in Netlogo (as well as a sorted tuples function) for better introspection of data. You may review the functions by viewing the [src/netlogo/util/general.nls](https://github.com/oubiwann/abm-personality-and-emotions/blob/master/project/src/netlogo/util/general.nls) file.
 1. Some basic set theoretic functions were absent from Netlogo, so these were implemented as well (see the same file as above).
 
 ## RELATED MODELS
@@ -475,7 +475,7 @@ There are agent models that combine personality with emotions and moods (see "A 
 
 If you mention this model in a publication, we ask that you include the citation below.
 
-McGreggor, D. (2019). NetLogo Personality, Emotion, and Mood Bearing Agents. https://github.com/oubiwann/intro-abm/tree/master/project.
+McGreggor, D. (2019). NetLogo Personality, Emotion, and Mood Bearing Agents. https://github.com/oubiwann/abm-personality-and-emotions/tree/master/project.
 
 ## REFERENCES
 

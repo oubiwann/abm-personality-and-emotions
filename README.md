@@ -1,11 +1,12 @@
-# Intro to ABM: Course Project
+# Personality and Emotions
+
+*NetLogo Agent-Based Models with Personality, Emotion, and Mood Bearing Agents*
 
 [![Build Status][travis-badge]][travis]
 [![Clojars Project][clojars-badge]][clojars]
 [![Tag][tag-badge]][tag]
 [![Clojure version][clojure-v]](project/project.clj)
 
-*NetLogo Personality, Emotion, and Mood Bearing Agents*
 
 ## About
 
@@ -31,11 +32,11 @@ Each model model in this project has had its `Info` tab exported and published
 as documentation viewable on Github:
 
 * Personality Model
-    * [Simple](https://oubiwann.github.io/intro-abm/personality.html)
-    * [Complex](https://oubiwann.github.io/intro-abm/personality-complex.html)
-* [Emotion Model](https://oubiwann.github.io/intro-abm/emotion.html) (in-progress)
-* [Mood Model](https://oubiwann.github.io/intro-abm/mood.html)
-* [Combined Models](https://oubiwann.github.io/intro-abm/combined.html) (not started)
+    * [Simple](https://oubiwann.github.io/abm-personality-and-emotions/personality.html)
+    * [Complex](https://oubiwann.github.io/abm-personality-and-emotions/personality-complex.html)
+* [Emotion Model](https://oubiwann.github.io/abm-personality-and-emotions/emotion.html) (in-progress)
+* [Mood Model](https://oubiwann.github.io/abm-personality-and-emotions/mood.html)
+* [Combined Models](https://oubiwann.github.io/abm-personality-and-emotions/combined.html) (not started)
 
 ## Naming
 
@@ -65,14 +66,14 @@ Apache License, Version 2.0.
 
 <!-- Named page links below: /-->
 
-[travis]: https://travis-ci.org/oubiwann/intro-abm
-[travis-badge]: https://travis-ci.org/oubiwann/intro-abm.png?branch=master
-[deps]: http://jarkeeper.com/oubiwann/intro-abm
-[deps-badge]: http://jarkeeper.com/oubiwann/intro-abm/status.svg
+[travis]: https://travis-ci.org/oubiwann/abm-personality-and-emotions
+[travis-badge]: https://travis-ci.org/oubiwann/abm-personality-and-emotions.png?branch=master
+[deps]: http://jarkeeper.com/oubiwann/abm-personality-and-emotions
+[deps-badge]: http://jarkeeper.com/oubiwann/abm-personality-and-emotions/status.svg
 [logo]: resources/images/complexity-explorer-logo-x250.jpg
 [logo-large]: resources/images/complexity-explorer-logo-x800.png
-[tag-badge]: https://img.shields.io/github/tag/oubiwann/intro-abm.svg
-[tag]: https://github.com/oubiwann/intro-abm/tags
+[tag-badge]: https://img.shields.io/github/tag/oubiwann/abm-personality-and-emotions.svg
+[tag]: https://github.com/oubiwann/abm-personality-and-emotions/tags
 [clojure-v]: https://img.shields.io/badge/clojure-1.10.1-blue.svg
 [jdk-v]: https://img.shields.io/badge/jdk-1.11+-blue.svg
 [clojars]: https://clojars.org/pembas

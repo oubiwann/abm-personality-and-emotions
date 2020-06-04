@@ -1,6 +1,6 @@
 (defproject pembas "0.3.0-SNAPSHOT"
   :description "Introduction to Agent-Based Modeling (SFI/CI)"
-  :url "http://github.com/oubiwann/intro-abm"
+  :url "http://github.com/oubiwann/abm-personality-and-emotions"
   :license {
     :name "Apache Version 2.0"
     :url "https://www.apache.org/licenses/LICENSE-2.0"}
