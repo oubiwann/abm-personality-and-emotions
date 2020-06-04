@@ -11,7 +11,7 @@
     [org.nlogo/netlogo "6.1.0"]]
   :source-paths ["src/clj"]
   :resource-paths ["./", "resources"]
-  :jar-exclusions ["./resources"]
+  :jar-exclusions [#".*resources", #".*papers"]
   :clean-targets ^{:protect false} ["target"]
   :profiles {
     :docs {
