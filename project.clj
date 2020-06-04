@@ -1,5 +1,5 @@
-(defproject pembas "0.3.0-SNAPSHOT"
-  :description "Introduction to Agent-Based Modeling (SFI/CI)"
+(defproject pembas "0.4.0"
+  :description "NetLogo Agent-Based Models with Personality, Emotion, and Mood Bearing Agents"
   :url "http://github.com/oubiwann/abm-personality-and-emotions"
   :license {
     :name "Apache Version 2.0"
@@ -11,6 +11,8 @@
     [org.nlogo/netlogo "6.1.0"]]
   :source-paths ["src/clj"]
   :resource-paths ["./", "resources"]
+  :jar-exclusions ["./resources"]
+  :clean-targets ^{:protect false} ["target"]
   :profiles {
     :docs {
       :main pembas.docs}
