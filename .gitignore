@@ -1,5 +1,5 @@
-/project/.*.tmp.nlogo
-/project/.lein*
-/project/target/
-/project/pom.*
+/.*.tmp.nlogo
+/.lein*
+/target/
+/pom.*
 *DS_Store*
