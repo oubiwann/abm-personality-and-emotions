@@ -1,4 +1,4 @@
-# Personality and Emotions
+# Modeling Crowds with Personality, Emotions and Moods
 
 *NetLogo Agent-Based Models with Personality, Emotion, and Mood Bearing Agents*
 
