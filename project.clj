@@ -1,4 +1,4 @@
-(defproject pembas "0.4.0"
+(defproject pembas "0.5.0-SNAPSHOT"
   :description "NetLogo Agent-Based Models with Personality, Emotion, and Mood Bearing Agents"
   :url "http://github.com/oubiwann/abm-personality-and-emotions"
   :license {
